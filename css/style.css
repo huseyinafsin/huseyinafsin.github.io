@@ -1,0 +1,54 @@
+:root{
+  --primary-color:#0d1117;
+  --secondary-color: #FFFFFF;
+  --primary-color-dark:#FFFFFF ;
+  --secondary-color-dark: #0d1117;  
+}
+
+body{
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  font-family: OpenSouceOne,-apple-system,SF Pro,sans-serif" 
+  
+}
+
+.dark-mode {
+  color: var(--primary-color-dark);
+  background-color: var(--secondary-color-dark);
+  font-family: OpenSouceOne,-apple-system,SF Pro,sans-serif" 
+
+}
+header{
+  display: flex;
+  justify-content: space-between;
+}
+.navbar{
+  background-color: var(--secondary-color);
+}
+.menu{
+  display: flex;
+  justify-content: end;
+  margin-right: 10%;
+}
+.menu li{
+  margin-right: 20px;
+  display: inline-block;
+}
+
+#logo{
+  display: flex;
+  justify-content: start;
+  margin-left: 100px;
+}
+.card{
+  width: 500px;
+  height: 200px;
+  background: linear-gradient(90deg, #f5dba0 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
+}
+
+@font-face {
+  font-family: 'OpenSouceOne';
+  src: url(../fonts/OpenSauceOne-Medium.woff2) format('woff2');
+}
+
