@@ -1,0 +1,45 @@
+body{
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+}
+
+.card{
+  background-color: black;
+  opacity: 0.2;
+  border-radius: 25px;
+  margin: 15px;
+  margin-bottom: 10px;
+
+}
+
+.card-profile{
+  width: 500px;
+  height: 400px;
+}
+.card-about{
+  width: 520px;
+  height: 400px;
+}
+.card-temp{
+  width: 520px;
+  height: 600px;
+}
+.card-work{
+  width: 1015px;
+  height: 30px;
+}
+.card-music{
+  width: 100px;
+  height: 30px;
+}

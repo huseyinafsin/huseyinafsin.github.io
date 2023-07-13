@@ -1,0 +1,96 @@
+body{
+  background-image: url("./assets/img/background.jpg") !important;
+  background-size: cover !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.row{
+      margin: 3px !important;
+}
+.h-container{
+  margin: 5% ;
+}
+.card{
+  background-color: black !important;
+  opacity: 0.2 !important;
+  border-radius: 25px !important;
+  margin: 10px !important;
+
+}
+
+.card-profile{
+  width: 100% !important;
+  opacity: 1 !important;
+  padding: 2px !important;
+  height: 200px !important;
+}
+.card-about{
+  width: 100% !important;
+  height: 250px !important;
+}
+.card-touch{
+  width: 100% !important;
+  height: 200px !important;
+}
+.card-work{
+width: 100% !important;
+  height: 400px !important;
+  opacity: 1 !important;
+  padding: 10px !important;
+  pointer-events: none !important;
+  background-color: white !important;
+  justify-content: center !important;
+  border: none;
+}
+.card-temp{
+  width: 100% !important;
+  height: 500px !important;
+  opacity: 1;
+  justify-content: center !important;
+}
+.card-stack{
+  width: 100% !important;
+  height:200px !important;
+}
+.card-tech{
+  width: 100% !important;
+  height:100px !important;
+  justify-content: space-around !important;
+  justify-items: center !important;
+  padding: 5px !important;
+  display: flex !important;
+  flex-direction: row !important;
+}
+.card-music{
+  width: 100% !important;
+  height: 123px !important;
+  opacity: 1 !important;
+  justify-content: center !important;
+}
+
+img{
+  border-radius: 25px !important;
+  pointer-events: none !important;
+
+}
+
+.logo-box{
+  background-color: white !important;
+  height: 90px !important;
+  width: 90px !important;
+  border-radius: 5px !important;
+  opacity: 1 !important;
+
+}
+.logo-arrow{
+
+}
+.calendar{
+  background-color: rgb(255, 255, 255) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50px !important;
+}
