@@ -1,0 +1,49 @@
+.logo-box{
+    background-color: white !important;
+    height: 90px !important;
+    width: 90px !important;
+    border-radius: 5px !important;
+    display: flex !important;
+    vertical-align:middle;
+    justify-content: center !important;
+    align-items: center;
+   
+    
+  }
+
+  .btn-slide{
+    border: none;
+    height: min-content;
+    align-self: center;
+    
+  }
+  .logo-wrap{
+    width: 100% !important;
+    height:100px !important;
+    justify-content: space-around !important;
+    justify-items: center !important;
+    padding: 5px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    opacity: 1 !important;
+    z-index: 2;
+    pointer-events: n;
+
+  }
+  .card-tech{
+    width: 100% !important;
+    height:100px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    z-index: 1;
+  }
+
+ .logo-box > svg{
+    /* display: flex;s
+    background-color: black;
+    width: fit-content;
+    height: fit-content;*/
+    opacity: 1!important; 
+    z-index: 3;
+
+ }
