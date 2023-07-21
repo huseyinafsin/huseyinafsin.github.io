@@ -5,7 +5,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(90deg, rgba(241,216,5,1) 37%, rgba(224,120,18,1) 100%);
-      /* background-image: url("../src/assets/img/background.jpg"); */
+  /* background: linear-gradient(90deg, #0d1117 37%, rgba(0,0,0,1) 100%); */
+  /* background-color: #0d1117 !important; */
+      background-image:  url("../src/assets/img/background.jpg");
+      /* background-repeat: repeat !important; */
+      background-size: cover !important;
 }
 
 code {
@@ -13,9 +17,4 @@ code {
     monospace;
 }
 
-
-
-.background{
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-}
+--card-background:linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgb(101, 98, 98)) !important;

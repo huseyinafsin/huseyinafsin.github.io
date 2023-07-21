@@ -7,7 +7,7 @@
     vertical-align:middle;
     justify-content: center !important;
     align-items: center;
-   
+
     
   }
 
@@ -17,6 +17,7 @@
     align-self: center;
     
   }
+
   .logo-wrap{
     width: 100% !important;
     height:100px !important;
@@ -25,25 +26,22 @@
     padding: 5px !important;
     display: flex !important;
     flex-direction: row !important;
-    opacity: 1 !important;
-    z-index: 2;
-    pointer-events: n;
+    pointer-events: none !important;
 
   }
+
   .card-tech{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgb(101, 98, 98)) !important;
     width: 100% !important;
     height:100px !important;
     display: flex !important;
     flex-direction: row !important;
-    z-index: 1;
   }
 
- .logo-box > svg{
-    /* display: flex;s
-    background-color: black;
-    width: fit-content;
-    height: fit-content;*/
-    opacity: 1!important; 
-    z-index: 3;
+  .progress{
+    color: black;
+    position: absolute;
+    margin-bottom: 10% !important;
+    width: 80%;
+  }
 
- }

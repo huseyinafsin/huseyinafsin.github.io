@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-147 -70 294 345" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g fill="#a4c639" transform="matrix(1, 0, 0, 1, -1.170815, -5.854073)">
+    <g stroke-width="14.4" stroke="#FFF">
+      <ellipse cy="41" rx="91" ry="84"/>
+      <rect rx="22" height="182" width="182" y="20" x="-91"/>
+    </g>
+    <g stroke="#FFF" stroke-width="7.2" transform="matrix(-1, 0, 0, 1, 0, 0)">
+      <rect rx="6.5" transform="rotate(29)" height="86" width="13" y="-86" x="14"/>
+      <rect rx="24" height="133" width="48" y="-34.713" x="-139.488" style="fill: rgb(198, 57, 57);"/>
+      <use y="97" x="85" xlink:href="#c"/>
+    </g>
+    <g id="a" stroke="#FFF" stroke-width="7.2">
+      <rect rx="6.5" transform="rotate(29)" height="86" width="13" y="-86" x="14" style="fill: rgb(198, 57, 57);"/>
+      <rect id="c" rx="24" height="133" width="48" y="41" x="-143" style="fill: rgb(198, 57, 57);"/>
+      <rect rx="24" height="133" width="48" y="41" x="-143" transform="matrix(1, 0, 0, 1, 85, 97)"/>
+    </g>
+    <g id="b">
+      <ellipse cy="41" rx="91" ry="84" style="fill: rgb(198, 57, 57);"/>
+      <rect rx="22" height="182" width="182" y="20" x="-91" style="fill: rgb(198, 57, 57);"/>
+    </g>
+  </g>
+  <g stroke="#FFF" stroke-width="7.2" fill="#FFF">
+    <path d="m-95 44.5h190"/>
+    <circle cx="-42" r="4"/>
+    <circle cx="42" r="4"/>
+  </g>
+  <rect x="-7.618" y="24.589" width="16.639" height="9.012" style="fill: rgb(249, 250, 247); stroke: rgb(247, 249, 247);"/>
+  <rect x="-15.418" y="36.085" width="31.197" height="2.426" style="fill: rgb(249, 250, 247); stroke: rgb(247, 249, 247);"/>
+</svg>
