@@ -8,6 +8,8 @@ on:
     branches: [ "react" ]
   pull_request:
     branches: [ "react" ]
+permissions:
+  contents: write
 
 jobs:
   build:

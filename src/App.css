@@ -1,4 +1,4 @@
-/* :root {
+:root {
   --primary-bg-color: #1c1c1c;
   --secondary-bg-color: #161616;
   --smoked-grey: #9d9999;
@@ -159,4 +159,4 @@ body {
 
 .container-item:hover .mui-icon, .container-item:hover .item-title {
   color: var(--white-color) ;
-} */
+}
