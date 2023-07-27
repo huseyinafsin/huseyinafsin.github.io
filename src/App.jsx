@@ -1,3 +1,5 @@
+import './App.css';
+
 import pp from "./assets/img/profile.jpeg";
 import { Image } from "react-bootstrap";
 import React, { useState } from "react";
