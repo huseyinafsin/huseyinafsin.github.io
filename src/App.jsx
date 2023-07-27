@@ -50,7 +50,7 @@ function App() {
       id: uuidv1(),
       name: "Contact",
       icon: <DialpadRoundedIcon />,
-    },  
+    },
   ];
   const social = [
     { 
