@@ -115,8 +115,8 @@ function App() {
           <div className="container-item">
             <div className="item-title">Follow</div>
           </div>
-          {social.map((item) => (
-            <div key={item.id} className="container-item">
+          {social.map((item, index) => (
+            <div key={index} className="container-item">
               <Button 
               style={itemBtn} href={item.url}>
                 <span className="mui-icon">{item.icon}</span>
