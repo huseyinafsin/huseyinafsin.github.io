@@ -25,4 +25,4 @@ function Navbar() {
   )
 }
 
-export default AppBar
+export default Navbar
