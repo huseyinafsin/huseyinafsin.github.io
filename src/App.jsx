@@ -2,10 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import { Navbar, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import { createContext, useState } from "react";
 
 export const ThemeContext = createContext(null);
