@@ -21,14 +21,7 @@ function About() {
         quidem!id perferendis maxime Lorem ipsum dolor sit amet ecusandae hic
         ab. incidunt facilis. Necessitatibus, ipsa eos magni recusandae hic ab.
         Optio, quidem!id perferendis maxime Lorem ipsum dolor sit amet ecusandae
-        hic ab. incidunt facilis. Necessitatibus, ipsa eos magni recusandae hic
-        ab. Optio, quidem!id perferendis maxime Lorem ipsum dolor sit amet
-        ecusandae hic ab. ecusandae hic ab. incidunt facilis. Necessitatibus,
-        ipsa eos magni recusandae hic ab. Optio, quidem!id perferendis maxime
-        Lorem ipsum dolor sit amet ecusandae hic ab. Optio, quidem!id
-        perferendis maxime Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Dolore totam, hic doloremque rerum odio, ab rem ea. Corrupti
-        cumque mol
+
       </p>
     </div>
   );

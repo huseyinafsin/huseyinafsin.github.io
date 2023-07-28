@@ -1,6 +1,7 @@
-import { React, useContext, useEffect, useState } from "react";
+import { React, useContext, useState } from "react";
 import { Button } from "@mui/material";
-import { FormControlLabel, Switch, styled } from "@mui/material";
+import { Switch, styled } from "@mui/material";
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import { Image } from "react-bootstrap";
 import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded";
 import NearMeRounded from "@mui/icons-material/NearMeRounded";
@@ -21,49 +22,49 @@ function Sidebar() {
       id: uuidv1(),
       name: "Home",
       icon: <ExploreRoundedIcon />,
-      path:"home"
+      path: "home",
     },
     {
       id: uuidv1(),
       name: "Projects",
       icon: <NearMeRounded />,
-      path:"projects"
+      path: "projects",
     },
     {
       id: uuidv1(),
       name: "Boutique",
       icon: <ShoppingBagRoundedIcon />,
-      path:"boutique"
+      path: "boutique",
     },
     {
       id: uuidv1(),
       name: "Writings",
       icon: <CreateRoundedIcon />,
-      path:"writings"
+      path: "writings",
     },
     {
       id: uuidv1(),
       name: "Stack",
       icon: <BuildRoundedIcon />,
-      path:"stack"
+      path: "stack",
     },
     {
       id: uuidv1(),
       name: "About",
       icon: <FaceRoundedIcon />,
-      path:"about"
+      path: "about",
     },
     {
       id: uuidv1(),
       name: "Contact",
       icon: <DialpadRoundedIcon />,
-      path:"contact"
+      path: "contact",
     },
   ];
   const social = [
     {
       id: uuidv1(),
-      name: "Linked",
+      name: "Linkedin",
       icon: <LinkedInIcon />,
       url: "https://www.linkedin.com/in/huseyinafsin/",
     },
@@ -86,20 +87,22 @@ function Sidebar() {
     },
   ];
   const [clickedItemIndex, setClickedItemIndex] = useState(0);
+  const [checked, setChecked] = useState(true);
   const themeContext = useContext(ThemeContext);
-  
+
   const handleClick = (i) => {
     setClickedItemIndex(i);
   };
 
   const handleSwitch = () => {
-    themeContext.toggleTheme()    
+    themeContext.toggleTheme();
+    setChecked(!checked)
   };
   const itemBtn = {
     textTransform: "none",
     width: "90%",
     justifyContent: "start",
-    alignItems:"center",
+    alignItems: "center",
     padding: 0,
     marginRight: 0,
     marginLeft: "5%",
@@ -114,16 +117,10 @@ function Sidebar() {
             alt=""
             className="profil-image"
           />
-          <div className="container-title">
+          <div className="pp-title">
             <h5 className="text-1">Hüseyin Afşin</h5>
             <h5 className="text-2">Software Developer</h5>
           </div>
-          <MaterialUISwitch
-            onChange={handleSwitch}
-            sx={{ m: 1 }}
-            style={{ verticalAlign: "center", height: "100%" }}
-            defaultChecked
-          />
         </div>
       </div>
       <br />
@@ -137,7 +134,11 @@ function Sidebar() {
                 : "container-item"
             }
           >
-            <Button style={itemBtn} href={item.path} onClick={() => handleClick(index)}>
+            <Button
+              style={itemBtn}
+              href={item.path}
+              onClick={() => handleClick(index)}
+            >
               <span className="mui-icon">{item.icon}</span>
               <div className="item-title">{item.name}</div>
             </Button>
@@ -146,9 +147,7 @@ function Sidebar() {
       </div>
       <br></br>
       <div className="container-social">
-        <div className="container-item">
-          <div className="item-title">Follow</div>
-        </div>
+        <div className="container-title">Follow</div>
         {social.map((item, index) => (
           <div key={index} className="container-item">
             <Button style={itemBtn} href={item.url}>
@@ -157,6 +156,37 @@ function Sidebar() {
             </Button>
           </div>
         ))}
+      </div>
+      <div className="container-tools">
+        <div className="container-title">
+          <div className="item-title">Tools</div>
+        </div>
+        <div className="container-item">
+          <div className="tool-item" style={{border:"var(--border-color) 1px solid", 
+          width:"100%", justifyContent:"start", marginLeft:"5%", marginTop:"5%",marginBottom:"5%",height:"80%",
+            borderRadius:"10px",
+           display:"flex", alignItems:"center"}}>
+            <div className="item-title">{checked ? "Dark Mode" : "Light Mode"}</div>
+            <MaterialUISwitch
+              onChange={handleSwitch}
+              sx={{ m: 1 }}
+              style={{ verticalAlign: "center", height: "100%" }}
+              defaultChecked={checked}
+            />
+          </div>
+        </div>
+        <div className="container-item">
+          <div className="tool-item" style={{border:"var(--border-color) 1px solid", 
+          width:"100%", justifyContent:"start", marginLeft:"5%", marginTop:"5%",marginBottom:"5%",height:"80%",
+            borderRadius:"10px",
+           display:"flex", alignItems:"center"}}>
+            <div className="item-title">Get my cv</div>
+
+            <Button>
+              <ExpandCircleDownIcon/>
+              </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

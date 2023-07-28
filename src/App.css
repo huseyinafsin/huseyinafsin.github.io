@@ -65,15 +65,13 @@ body {
   vertical-align: middle;
   display: flex;
   padding: 5% 0 5%;
-  flex-grow: 1;
-
+  
 }
 .content{
   background-color: var(--secondary-color);
   color: var(--primary-color);
   height: 100%;
   width: 40%;
-  min-height: 74vh;
 }
 
 
@@ -145,7 +143,7 @@ body {
   margin-left: 5%;
 }
 .container-item {
-  width: 100%;
+  width: 70%;
   height: 46px;
   display: flex;
   justify-content: start;
@@ -158,6 +156,7 @@ body {
   text-align: center;
   color: var(--icon-color);
   font-family: "Inter", sans-serif;
+  font-size: small;
 }
 
 .container-menu {
@@ -165,9 +164,9 @@ body {
   height: 324px;
 }
 
-.container-social {
+.container-social, .container-tools {
   width: 100%;
-  height: 324px;
+  height: 250px;
 }
 .text-1,
 .text-2 {
@@ -188,7 +187,6 @@ body {
 
 .mui-icon {
   color: var(--icon-color);
-  
 }
 
 
@@ -210,11 +208,28 @@ body {
 
 h1{
   display: block;
-  font-size: 3em;
+  font-size: 32px;
   margin-block-start: 0.67em;
   margin-block-end: 0.67em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
   font-family: "Inter";
+}
+
+.container-title{
+  border-bottom:var(--border-color) 1px solid;
+  padding-bottom: 2%;
+  font-size: small;
+  color: var(--primary-color);
+  align-items: start;
+}
+
+.pp-title{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-left: 5%;
 }
