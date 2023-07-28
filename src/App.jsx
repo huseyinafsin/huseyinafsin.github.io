@@ -23,7 +23,9 @@ function App() {
     <div id={theme} className={"container"}>
       <Sidebar/>
       <div className="main">
-        <BrowserRouter>
+      <div className="content-wrap">
+      <div className="content">
+      <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/home' element={<Home/>} />
@@ -33,7 +35,8 @@ function App() {
             <Route path="*" element={"404"} />
           </Routes>
         </BrowserRouter>
-
+      </div>
+      </div>
       <Footer/>
       </div>
     </div>

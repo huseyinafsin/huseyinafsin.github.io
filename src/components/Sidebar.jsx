@@ -21,36 +21,43 @@ function Sidebar() {
       id: uuidv1(),
       name: "Home",
       icon: <ExploreRoundedIcon />,
+      path:"home"
     },
     {
       id: uuidv1(),
       name: "Projects",
       icon: <NearMeRounded />,
+      path:"projects"
     },
     {
       id: uuidv1(),
       name: "Boutique",
       icon: <ShoppingBagRoundedIcon />,
+      path:"boutique"
     },
     {
       id: uuidv1(),
       name: "Writings",
       icon: <CreateRoundedIcon />,
+      path:"writings"
     },
     {
       id: uuidv1(),
       name: "Stack",
       icon: <BuildRoundedIcon />,
+      path:"stack"
     },
     {
       id: uuidv1(),
       name: "About",
       icon: <FaceRoundedIcon />,
+      path:"about"
     },
     {
       id: uuidv1(),
       name: "Contact",
       icon: <DialpadRoundedIcon />,
+      path:"contact"
     },
   ];
   const social = [
@@ -130,7 +137,7 @@ function Sidebar() {
                 : "container-item"
             }
           >
-            <Button style={itemBtn} onClick={() => handleClick(index)}>
+            <Button style={itemBtn} href={item.path} onClick={() => handleClick(index)}>
               <span className="mui-icon">{item.icon}</span>
               <div className="item-title">{item.name}</div>
             </Button>
