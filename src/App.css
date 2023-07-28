@@ -58,20 +58,20 @@ body {
 }
 .content-wrap {
   width: 100%;
-  height: 100%;
+  height: calc(100% -166px);
   background-color: var(--secondary-color);
   justify-content: center;
   align-items: center;
   vertical-align: middle;
   display: flex;
   padding: 5% 0 5%;
-  
+
 }
 .content{
   background-color: var(--secondary-color);
   color: var(--primary-color);
   height: 100%;
-  width: 40%;
+  width: 50%;
 }
 
 
@@ -86,7 +86,7 @@ body {
   width: 20%;
   height: 100%;
   min-height: 100vh;
-  max-height: 10000vh;
+  max-height: 2400px;
   border-right: var(--border-color) 1px solid;
   
   left: 0;
@@ -94,6 +94,7 @@ body {
 .footer {
   position: relative;
   height: 116px;
+  max-height: 116px;
   background-color: var(--secondary-color);
   border-top: var(--border-color) 1px solid;
   display: flex;
@@ -232,4 +233,56 @@ h1{
   justify-content: center;
   align-items: start;
   margin-left: 5%;
+}
+
+/* <=============Media===================> */
+
+@media only screen and (max-width: 	750px) {
+
+  body{
+    font-size: 12px;
+  }
+  .sidebar {
+    position: absolute;
+    background-color: var(--sidebar-color);
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    border-right: var(--border-color) 1px solid;
+    display: none;
+    left: 0;
+  }
+  .footer{
+    display: flex;
+    justify-content: space-between;
+  }
+  .container-profile{
+    justify-content: start;
+    display: flex;
+  }
+  .pp-title{
+    align-items: center;
+    width: 30%;
+  }
+
+  .text-1, .text-2{
+    font-size: smaller;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .mui-icon {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+  .navbar{
+    height: 60px;
+  }
+
+  .profile-box{
+    justify-content: space-around;
+  }
 }

@@ -1,5 +1,5 @@
 import { React, useContext, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { Switch, styled } from "@mui/material";
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import { Image } from "react-bootstrap";
@@ -12,6 +12,7 @@ import DialpadRoundedIcon from "@mui/icons-material/DialpadRounded";
 import FaceRoundedIcon from "@mui/icons-material/FaceRounded";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import MenuIcon from '@mui/icons-material/Menu';
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { v1 as uuidv1 } from "uuid";
@@ -121,6 +122,16 @@ function Sidebar() {
             <h5 className="text-1">Hüseyin Afşin</h5>
             <h5 className="text-2">Software Developer</h5>
           </div>
+          <IconButton
+            
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2, color:"var(--primary-color)"}}
+          >
+            <MenuIcon />
+          </IconButton>
         </div>
       </div>
       <br />
