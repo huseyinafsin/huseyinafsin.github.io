@@ -16,7 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { v1 as uuidv1 } from "uuid";
-import { ThemeContext } from "../App";
 function Sidebar() {
   const menu = [
     {
@@ -88,17 +87,14 @@ function Sidebar() {
     },
   ];
   const [clickedItemIndex, setClickedItemIndex] = useState(0);
-  const [checked, setChecked] = useState(true);
-  const themeContext = useContext(ThemeContext);
+  const [checked] = useState(true);
 
   const handleClick = (i) => {
     setClickedItemIndex(i);
   };
 
-  const handleSwitch = () => {
-    themeContext.toggleTheme();
-    setChecked(!checked)
-  };
+
+
   const itemBtn = {
     textTransform: "none",
     width: "90%",
@@ -110,7 +106,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
+    <div className="sidebar dark-theme ">
       <div className="container-profile">
         <div className="profile-box">
           <Image
@@ -122,13 +118,14 @@ function Sidebar() {
             <h5 className="text-1">Hüseyin Afşin</h5>
             <h5 className="text-2">Software Developer</h5>
           </div>
-          <IconButton
-            
+          <IconButton 
+            id="menu-button"
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2, color:"var(--primary-color)"}}
+            onClick={()=>{}}
           >
             <MenuIcon />
           </IconButton>
@@ -179,7 +176,7 @@ function Sidebar() {
            display:"flex", alignItems:"center"}}>
             <div className="item-title">{checked ? "Dark Mode" : "Light Mode"}</div>
             <MaterialUISwitch
-              onChange={handleSwitch}
+              onChange={()=>{}}
               sx={{ m: 1 }}
               style={{ verticalAlign: "center", height: "100%" }}
               defaultChecked={checked}

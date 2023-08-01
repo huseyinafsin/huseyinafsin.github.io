@@ -1,28 +1,28 @@
-import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
-import React from 'react'
-import { Button } from 'react-bootstrap'
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, IconButton, Toolbar } from "@mui/material";
+import React from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 
 function Navbar() {
+
   return (
-      <AppBar position="static">
-        <Toolbar>
+    <div className={"navbar"} >
+      <AppBar position="static" sx={{color:"var(--primary-color)",
+       backgroundColor:"var(--secondary-color)"}}>
+        <Toolbar sx={{justifyContent:"end",display:"flex",}} >
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, color:"var(--primary-color)"}}
+            sx={{ mr: 2,}}
+            onClick={()=>{}}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-  )
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;
