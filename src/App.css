@@ -142,7 +142,13 @@ body {
   justify-content: center;
   align-items: start;
   margin-left: 5%;
+  border-bottom:var(--border-color) 1px solid;
+  padding-bottom: 2%;
+  font-size: small;
+  color: var(--primary-color);
+  align-items: start;
 }
+
 .container-item {
   width: 70%;
   height: 46px;
@@ -218,13 +224,7 @@ h1{
   font-family: "Inter";
 }
 
-.container-title{
-  border-bottom:var(--border-color) 1px solid;
-  padding-bottom: 2%;
-  font-size: small;
-  color: var(--primary-color);
-  align-items: start;
-}
+
 
 .pp-title{
   width: 70%;

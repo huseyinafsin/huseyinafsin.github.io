@@ -16,5 +16,5 @@ const useStyles = makeStyles({
 
 export default function Error404() {
   const classes = useStyles();
-  return <Button className={classes.root}>Hook</Button>;
+  return <div className="a"></div>;
 }
