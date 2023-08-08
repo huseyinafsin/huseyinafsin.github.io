@@ -52,7 +52,12 @@ const darkTheme = createTheme(theme,{
       100: "rgb(124, 127, 130)", //sidebar bg
       200: "#2b2b2b", //active item
       300: "1px solid rgba(255, 255, 255, 0.12)", //border
+      500:"#1c1c1c"
     },
+    background:{
+      paper:"#161616",
+      default:"#161616"
+    }
   },
 });
 
@@ -70,7 +75,13 @@ const lightTheme = createTheme(theme,{
       100: "rgb(124, 127, 130)", //sidebar bg
       200: "#e1e8e3", //active item
       300: "1px solid rgba(255, 255, 255, 0.12)", //border
+      500:"#1c1c1c"
+
     },
+    background:{
+      paper:"#ffffff",
+      default:"#ffffff"
+    }
   },
 });
 class ThemeContextProvider extends Component {

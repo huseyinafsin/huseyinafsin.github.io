@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => {
     },
     page: {
       color: theme.palette.primary.main,
-      backgroundColor: theme.palette.secondary.main,
+      background: theme.palette.secondary.main,
       minHeight: "100vh",
       width: `calc(100% - ${drawerWidth}px)  !important`,
       [theme.breakpoints.down('md')]: {
@@ -59,16 +59,16 @@ function DefaultLayout({ children }) {
   const classes = useStyles();
   const {isMenuOpen} = useContext(LayoutContext)
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <div className={classes.root}>
       <SidebarProvider>
         <Sidebar />
       </SidebarProvider>
-      <div className={classes.page} style={( isMenuOpen && matches) ? {width: "0% !important",} :{} }>
+      <div className={classes.page} style={( isMenuOpen && matches) ? {display:"none",} :{} }>
         <Navbar />
-        <Grid className={classes.content} style={( matches) ? {display:"flex", justifyContent:"center", padding:"5%"} :{} }>
+        <Grid className={classes.content} style={( matches) ? {display:"flex", justifyContent:"center" , padding:"5%"} :{} }>
           <div className={classes.container}
           style={( matches) ? {margin: "5% 0% 0"} :{} }
           >{children}</div>

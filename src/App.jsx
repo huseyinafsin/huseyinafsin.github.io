@@ -11,6 +11,7 @@ import React, { Component } from "react";
 import { ThemeContext } from "./contexts/ThemeContext";
 import Stack from "./pages/Stack";
 import LayoutProvider from "./contexts/Layout.Context";
+import UserDataProvider from "./contexts/UserDataContext";
 
 class App extends Component {
   render() {
@@ -22,18 +23,20 @@ class App extends Component {
           return (
             <ThemeProvider theme={theme}>
               <LayoutProvider>
-                <DefaultLayout>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/stack" element={<Stack />} />
-                    <Route path="/boutique" element={<Stack />} />
-                    <Route path="/writings" element={<Stack />} />
-                    <Route path="/projects" element={<Stack />} />
-                  </Routes>
-                </DefaultLayout>
+                  <DefaultLayout>
+                  <UserDataProvider>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/home" element={<Home />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/stack" element={<Stack />} />
+                      <Route path="/boutique" element={<Stack />} />
+                      <Route path="/writings" element={<Stack />} />
+                      <Route path="/projects" element={<Stack />} />
+                    </Routes>
+                    </UserDataProvider>
+                  </DefaultLayout>
               </LayoutProvider>
               <EmptyLayout>
                 <Routes>

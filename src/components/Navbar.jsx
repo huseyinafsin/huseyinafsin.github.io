@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 
 }));
-function Navbar({style}) {
+function Navbar() {
   const classes = useStyles();
   const {toggleMenu} = useContext(LayoutContext)
   return (

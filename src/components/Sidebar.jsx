@@ -1,5 +1,5 @@
 import { React, useContext, useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import { Image } from "react-bootstrap";
 import { makeStyles } from "@mui/styles";
@@ -9,7 +9,8 @@ import { SidebarContext } from "../contexts/SidebarContext";
 import { MaterialUISwitch } from "./MaterialUISwitch";
 import { LayoutContext } from "../contexts/Layout.Context";
 import { useTheme } from "@emotion/react";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -32,11 +33,10 @@ const useStyles = makeStyles((theme) => ({
     width: "15%",
     borderRight: theme.palette.grey[300],
     left: 0,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       width: "100%",
-      display:"none"
+      display: "none",
     },
-
   },
   containerProfile: {
     width: "100%",
@@ -135,11 +135,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: '"Inter", sans-serif',
     fontWeight: 700,
     textAlign: "center",
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
-    flexDirection:"column",
-    verticalAlign:"middle"
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    verticalAlign: "middle",
   },
   activeItem: {
     color: theme.palette.primary.main[200],
@@ -152,14 +152,15 @@ function Sidebar() {
   const classes = useStyles();
   const navigate = useNavigate();
   const { menu, social } = useContext(SidebarContext);
-  const { isMenuOpen } = useContext(LayoutContext);
+  const { isMenuOpen, toggleMenu } = useContext(LayoutContext);
   const [clickedItemIndex, setClickedItemIndex] = useState(0);
   const [checked] = useState(true);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClick = (i, path) => {
     setClickedItemIndex(i);
+    toggleMenu()
     navigate(path);
   };
   return (
@@ -167,7 +168,12 @@ function Sidebar() {
       {(context) => {
         const toggleTheme = context.toggleTheme;
         return (
-          <div className={classes.sidebar} style={( isMenuOpen) ? {display:true,} :{} }  >
+          <div
+            className={classes.sidebar}
+            style={
+              isMenuOpen ? { display: "flex", flexDirection: "column" } : {}
+            }
+          >
             <div className={classes.containerProfile}>
               <div className={classes.profileBox}>
                 <Image
@@ -178,13 +184,22 @@ function Sidebar() {
                   className={classes.profileImage}
                 />
                 <div className={classes.ppTitle}>
-                  <Typography variant="h3">
-                    Hüseyin Afşin
-                  </Typography>
+                  <Typography variant="h3">Hüseyin Afşin</Typography>
                   <Typography variant="subtitle1">
-                  Software Developer
+                    Software Developer
                   </Typography>
                 </div>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  className={classes.iconButton}
+                  sx={{ mr: 2 }}
+                  onClick={toggleMenu}
+                >
+                  <MenuIcon />
+                </IconButton>
               </div>
             </div>
             <br />
@@ -268,4 +283,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-

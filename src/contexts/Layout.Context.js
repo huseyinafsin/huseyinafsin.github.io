@@ -7,7 +7,7 @@ const LayoutProvider = (props) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () =>{
-        setIsMenuOpen( !isMenuOpen)
+        setIsMenuOpen(!isMenuOpen)
     }
     return ( 
         <LayoutContext.Provider value={{isMenuOpen:isMenuOpen, toggleMenu: toggleMenu}} > {props.children}</LayoutContext.Provider>
