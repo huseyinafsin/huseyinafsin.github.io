@@ -41,7 +41,7 @@ let theme = createTheme({
 const darkTheme = createTheme(theme,{
   palette: {
     mode: "dark",
-    primary: {
+    primary: {  
       main: "#ffffff",
     },
     secondary: {
@@ -57,6 +57,9 @@ const darkTheme = createTheme(theme,{
     background:{
       paper:"#161616",
       default:"#161616"
+    },
+    text:{
+      color:"grey"
     }
   },
 });

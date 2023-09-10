@@ -12,6 +12,7 @@ import { ThemeContext } from "./contexts/ThemeContext";
 import Stack from "./pages/Stack";
 import LayoutProvider from "./contexts/Layout.Context";
 import UserDataProvider from "./contexts/UserDataContext";
+import Projects from "./pages/Projects";
 
 class App extends Component {
   render() {
@@ -33,7 +34,7 @@ class App extends Component {
                       <Route path="/stack" element={<Stack />} />
                       <Route path="/boutique" element={<Stack />} />
                       <Route path="/writings" element={<Stack />} />
-                      <Route path="/projects" element={<Stack />} />
+                      <Route path="/projects" element={<Projects />} />
                     </Routes>
                     </UserDataProvider>
                   </DefaultLayout>

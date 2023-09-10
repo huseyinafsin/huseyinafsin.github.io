@@ -1,6 +1,6 @@
 import { React, useContext, useState } from "react";
 import { Button, IconButton, Typography } from "@mui/material";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import downloadButton from "../assets/icons/download-svgrepo-com.svg";
 import { Image } from "react-bootstrap";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import { LayoutContext } from "../contexts/Layout.Context";
 import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
+import cv from "../assets/doc/Huseyin_Afsin.pdf";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -163,6 +164,14 @@ function Sidebar() {
     toggleMenu()
     navigate(path);
   };
+
+  function download() {
+    // console.log("cv")
+    // var a = document.createElement("a");
+    // a.href = cv;
+    // a.setAttribute("download", "Huseyin_Afsin.pdf");
+    // a.click();
+  }
   return (
     <ThemeContext.Consumer>
       {(context) => {
@@ -197,6 +206,7 @@ function Sidebar() {
                   className={classes.iconButton}
                   sx={{ mr: 2 }}
                   onClick={toggleMenu}
+                  style={!matches?{ display:"none"} :{}}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -266,11 +276,13 @@ function Sidebar() {
               </div>
               <div className={classes.containerItem}>
                 <div className={classes.toolItem}>
-                  <Typography variant="h3" className={classes.itemTitle}>
+                  <Typography variant="h3" 
+                   onClick={download()}
+                   className={classes.itemTitle}>
                     Get My Cv
                   </Typography>{" "}
-                  <Button>
-                    <ExpandCircleDownIcon />
+                  <Button >
+                    <img src={downloadButton} style={{width:"100%", height:"30px"}} alt="" />
                   </Button>
                 </div>
               </div>

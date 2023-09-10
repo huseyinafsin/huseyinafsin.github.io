@@ -22,19 +22,8 @@ function About() {
       </h4>
       <Image className={classes.aboutImg} src={img}></Image>
       <Typography variant="body1">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae dolorum
-        ima soluta hic incidunt facilis. Necessitatibus, ipsa eos magni
-        recusandae hic ab. Optio, quidem!id perferendis maxime Lorem ipsum dolor
-        sit amet ecusandae hic ab. incidunt facilis. Necessitatibus, ipsa eos
-        magni recusandae hic ab. Optio, quidem!id perferendis maxime Lorem ipsum
-        dolor sit amet ecusandae hic ab. incidunt facilis. Necessitatibus, ipsa
-        eos magni recusandae hic ab. Optio, quidem!id perferendis maxime Lorem
-        ipsum dolor sit amet ecusandae hic ab. Lorem, ipsum dolor sit amet
-        consectetur adipisicing elit. Vitae dolorum ima soluta hic incidunt
-        facilis. Necessitatibus, ipsa eos magni recusandae hic ab. Optio,
-        quidem!id perferendis maxime Lorem ipsum dolor sit amet ecusandae hic
-        ab. incidunt facilis. Necessitatibus, ipsa eos magni recusandae hic ab.
-        Optio, quidem!id perferendis maxime Lorem ipsum dolor sit amet ecusandae
+      Upcoming Computer Engineering graduate offering a strong foundation in software engineering and programming principles across multiple platforms. Experienced in data structures and object-oriented programming; developing, testing and debugging code. Quick learn and master new technologies; successful working in both team and self-directed setting.
+
       </Typography>
     </div>
   );
