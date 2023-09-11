@@ -26,20 +26,23 @@ function Home() {
     }, 2000);
     
     return () => clearInterval(interval);
-  }, [])
+  })
   return (
       <div>
-        <div className={classes.container}>
-          <Grid container>
-            <Grid item xs="8">
-              <div className="caption" style={{display:"flex", flexDirection:"column"}}>
+        <div className={classes.container} >
+          <Grid container >
+            <Grid columns={{  sm: 6, lg: 8 }}>
               <Typography variant='caption' >
               Hey, I'm Hüseyin. I design <span id='changingText' style={{color:"#7c7f82"}}> {text} </span>
               </Typography>
-              </div>
+              <br />
+              <br />
+              <Typography variant='body1'>
+                  I experienced at Software Development based in Cyprus.
+              </Typography>
             </Grid>
-            <Grid item xs="4">
-            <CircleAvatar src={profile} alt="Profile Picture" />
+            <Grid itemcolumns={{  sm: 6, lg: 8 }}>
+            <CircleAvatar src={profile} alt="Profile Picture" style={{width:"300px", height:"300px"}} />
             </Grid>
           </Grid>
         </div>

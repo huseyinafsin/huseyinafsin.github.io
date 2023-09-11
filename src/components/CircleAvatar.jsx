@@ -1,17 +1,25 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
-import { Box } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
+const useStyles = makeStyles((theme) => ({
+  avatar: {
+
+  },
+
+}));
 const CircleAvatar = ({ src, alt }) => {
+  const classes = useStyles();
+
     return (
       <div style={{
-        display: 'inline-block',
+        display: 'flex',
         border: '2px solid white', 
         borderRadius: '50%', 
         overflow: 'hidden', 
         padding:"5px"
       }}>
-      <Avatar alt={alt} src={src} sx={{ width: 200, height: 200 }} />
+      <Avatar alt={alt} src={src} xs={{width:"300px", height:"300px"}}   />
       </div>
 
     );
