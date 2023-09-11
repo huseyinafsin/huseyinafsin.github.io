@@ -10,8 +10,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const CircleAvatar = ({ src, alt }) => {
   const classes = useStyles();
-
-    return (
+  return (
       <div style={{
         display: 'flex',
         border: '2px solid white', 
