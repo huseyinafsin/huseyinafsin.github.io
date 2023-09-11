@@ -14,7 +14,7 @@
   --border-color: #625f5f;
   --active-item-bg-color: #2b2b2b;
   --footer-text-color: #908c8c;
-}
+} 
 
 
 #light-theme{
@@ -142,7 +142,13 @@ body {
   justify-content: center;
   align-items: start;
   margin-left: 5%;
+  border-bottom:var(--border-color) 1px solid;
+  padding-bottom: 2%;
+  font-size: small;
+  color: var(--primary-color);
+  align-items: start;
 }
+
 .container-item {
   width: 70%;
   height: 46px;
@@ -218,13 +224,7 @@ h1{
   font-family: "Inter";
 }
 
-.container-title{
-  border-bottom:var(--border-color) 1px solid;
-  padding-bottom: 2%;
-  font-size: small;
-  color: var(--primary-color);
-  align-items: start;
-}
+
 
 .pp-title{
   width: 70%;
@@ -234,6 +234,10 @@ h1{
   align-items: start;
   margin-left: 5%;
 }
+.navbar, #menu-button{
+  display: none;
+}
+
 
 /* <=============Media===================> */
 
@@ -252,6 +256,9 @@ h1{
     border-right: var(--border-color) 1px solid;
     display: none;
     left: 0;
+  }
+  .expanded{
+    display: block;
   }
   .footer{
     display: flex;
@@ -279,10 +286,15 @@ h1{
     padding-right: 0%;
   }
   .navbar{
-    height: 60px;
+    display: flex;
+
   }
 
   .profile-box{
     justify-content: space-around;
+  }
+
+  .content{
+    width: 80%;
   }
 }

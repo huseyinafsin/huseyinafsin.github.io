@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lexend+Tera:wght@200;300&display=swap');
-body {
+@import url('https://fonts.googleapis.com/css2?family=Borel&family=Inter:wght@600&family=Lexend+Tera:wght@200;300&display=swap');
+
+  body {
   font-family: -apple-system, BlinkMacSystemFont,'Inter', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

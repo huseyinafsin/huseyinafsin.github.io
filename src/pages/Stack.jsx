@@ -1,9 +1,9 @@
-import React from 'react'
-
+import React from "react";
+import StackComponent from "../components/StackComponet";
 function Stack() {
   return (
-    <div>Stack</div>
-  )
+   <StackComponent />
+  );
 }
 
-export default Stack
+export default Stack;

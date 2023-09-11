@@ -1,47 +1,55 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Footer from "./components/Footer";
-import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
+
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import { Stack } from "react-bootstrap";
-import { createContext, useState } from "react";
+import { ThemeProvider } from "@mui/material";
+import Error404 from "./pages/Error404";
+import DefaultLayout from "./layouts/DefaultLayout";
+import EmptyLayout from "./layouts/EmptyLayout";
+import React, { Component } from "react";
+import { ThemeContext } from "./contexts/ThemeContext";
+import Stack from "./pages/Stack";
+import LayoutProvider from "./contexts/Layout.Context";
+import UserDataProvider from "./contexts/UserDataContext";
+import Projects from "./pages/Projects";
 
-export const ThemeContext = createContext(null);
-
-function App() {
-  const [theme, setTheme] = useState("dark-theme");
-
-  const toggleTheme = () => {
-    setTheme((curr) => (curr === "dark-theme" ? "light-theme" : "dark-theme"));
-  };
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div id={theme} className={"container"}>
-        <Sidebar />
-        <div className="main">
-          <Navbar />
-          <div className="content-wrap">
-            <div className="content">
-              <BrowserRouter>
+class App extends Component {
+  render() {
+    return (
+      <ThemeContext.Consumer>
+        {(context) => {
+          const { isDarkTheme, light, dark } = context;
+          const theme = isDarkTheme ? light : dark;
+          return (
+            <ThemeProvider theme={theme}>
+              <LayoutProvider>
+                  <DefaultLayout>
+                  <UserDataProvider>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/home" element={<Home />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/stack" element={<Stack />} />
+                      <Route path="/boutique" element={<Stack />} />
+                      <Route path="/writings" element={<Stack />} />
+                      <Route path="/projects" element={<Projects />} />
+                    </Routes>
+                    </UserDataProvider>
+                  </DefaultLayout>
+              </LayoutProvider>
+              <EmptyLayout>
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/home" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/stack" element={<Stack />} />
-                  <Route path="*" element={"404"} />
+                  <Route path="*" element={<Error404 />} />
                 </Routes>
-              </BrowserRouter>
-            </div>
-          </div>
-          <Footer />
-        </div>
-      </div>
-    </ThemeContext.Provider>
-  );
+              </EmptyLayout>
+            </ThemeProvider>
+          );
+        }}
+      </ThemeContext.Consumer>
+    );
+  }
 }
 
 export default App;

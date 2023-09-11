@@ -1,28 +1,46 @@
-import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material'
-import React from 'react'
-import { Button } from 'react-bootstrap'
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, IconButton, Toolbar } from "@mui/material";
+import React, { useContext } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { makeStyles } from "@mui/styles";
+import { LayoutContext } from "../contexts/Layout.Context";
 
+const useStyles = makeStyles((theme) => ({
+  nav:{
+    width:"100%",
+    [theme.breakpoints.up('md')]: {
+      display:"none"
+    },
+    color:theme.palette.primary.main,
+    backgroundColor:theme.palette.secondary.main,
+  },
+  toolbar:{
+    color:theme.palette.primary.main,
+    backgroundColor:theme.palette.secondary.main,
+  }
+
+}));
 function Navbar() {
+  const classes = useStyles();
+  const {toggleMenu} = useContext(LayoutContext)
   return (
+    <nav  className={classes.nav} >
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={classes.toolbar} sx={{justifyContent:"end",display:"flex",}} >
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, color:"var(--primary-color)"}}
+            className={classes.iconButton}
+            sx={{ mr: 2,}}
+            onClick={toggleMenu}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-  )
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;
