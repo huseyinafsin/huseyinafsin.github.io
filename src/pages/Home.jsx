@@ -42,7 +42,7 @@ function Home() {
               </Typography>
             </Grid>
             <Grid itemcolumns={{  sm: 6, lg: 8 }}>
-            <CircleAvatar src={profile} alt="Profile Picture" style={{width:"300px", height:"300px"}} />
+            <CircleAvatar src={profile} alt="Profile Picture" style={{width:"600px", height:"600px"}} />
             </Grid>
           </Grid>
         </div>

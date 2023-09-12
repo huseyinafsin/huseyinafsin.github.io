@@ -18,7 +18,7 @@ const CircleAvatar = ({ src, alt }) => {
         overflow: 'hidden', 
         padding:"5px"
       }}>
-      <Avatar alt={alt} src={src} xs={{width:"300px", height:"300px"}}   />
+      <Avatar alt={alt} src={src}  />
       </div>
 
     );
