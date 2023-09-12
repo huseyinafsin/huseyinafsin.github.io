@@ -16,7 +16,7 @@ export const SidebarContext = createContext();
 
 const SidebarProvider = (props) => {
 
-    const [menu, setMenu] = useState([
+    const [menu] = useState([
         {
             id: uuidv1(),
             name: "Home",
@@ -60,7 +60,7 @@ const SidebarProvider = (props) => {
             path: "contact",
           },
     ])
-    const [social, setSocial] = useState([
+    const [social] = useState([
         {
             id: uuidv1(),
             name: "Linkedin",
