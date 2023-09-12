@@ -1,9 +1,9 @@
-import { Box, Grid, Typography } from "@mui/material";
+import {Grid } from "@mui/material";
 import React, { useState } from "react";
 import ProjectCard from "../components/ProjectCard";
 
 function Projects() {
-  const [projects, setProjects] = useState([
+  const [projects] = useState([
     {
       id: "dsdsds",
       title: "Redesigning the Pepsi website",

@@ -11,7 +11,7 @@ import { LayoutContext } from "../contexts/Layout.Context";
 import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
-import cv from "../assets/doc/Huseyin_Afsin.pdf";
+// import cv from "../assets/doc/Huseyin_Afsin.pdf";
 
 const useStyles = makeStyles((theme) => ({
   button: {
