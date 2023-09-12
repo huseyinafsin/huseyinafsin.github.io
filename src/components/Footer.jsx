@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },
+  
   containerFooter: {
     width: '15%',
     height: '30%',
