@@ -12,6 +12,7 @@ import { useTheme } from "@emotion/react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
 // import cv from "../assets/doc/Huseyin_Afsin.pdf";
+import profile from "../assets/img/yellow.jpg";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -187,7 +188,7 @@ function Sidebar() {
               <div className={classes.profileBox}>
                 <Image
                   src={
-                    "https://avatars.githubusercontent.com/u/42337444?s=400&v=4"
+                    profile
                   }
                   alt=""
                   className={classes.profileImage}

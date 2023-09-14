@@ -31,6 +31,8 @@ let theme = createTheme({
     },
     body1: {
       fontFamily: "Inter",
+      fontSize: "20px",
+ 
     },
 
     subtitle1:{

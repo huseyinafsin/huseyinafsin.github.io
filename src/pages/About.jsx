@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import img from "../assets/img/about.jpg";
 import { Image } from "react-bootstrap";
 import { makeStyles } from "@mui/styles";
@@ -12,13 +12,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 function About() {
   const classes = useStyles();
+  const [text] = useState(" Near East Technology")
   return (
     <div>
       <Typography
       variant="caption"
       >About Me</Typography>
       <h4>
-        UX Designer at Apple who loves minimal design, Grids & good coffee.
+        Software developer at   
+        <span id="changingText" style={{ color: "#7c7f82" }}>
+           {text}
+        </span> who loves develop advanced systems, Cats & good coffee.
       </h4>
       <Image className={classes.aboutImg} src={img}></Image>
       <Typography variant="body1">
