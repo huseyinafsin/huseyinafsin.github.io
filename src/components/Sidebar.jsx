@@ -13,7 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import MenuIcon from "@mui/icons-material/Menu";
 // import cv from "../assets/doc/Huseyin_Afsin.pdf";
 import profile from "../assets/img/yellow.jpg";
-
+var pjson = require('../../package.json');
 const useStyles = makeStyles((theme) => ({
   button: {
     textTransform: "none",
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
   containerTools: {
     width: "100%",
-    height: "200px",
+    height: "20px",
   },
   containerTitle: {
     width: "70%",
@@ -81,6 +81,12 @@ const useStyles = makeStyles((theme) => ({
   itemTitle: {
     marginLeft: "3%",
     textAlign: "center",
+    color: theme.palette.primary.main,
+  },
+  ver:{
+    marginTop:"2%",
+    marginLeft:"100%",
+    width:"100%",
     color: theme.palette.primary.main,
   },
   containerItem: {
@@ -258,12 +264,11 @@ function Sidebar() {
                 </div>
               ))}
             </div>
-            <div className={classes.containerTools}>
+            <div className={classes.containerMenu}>
               <div className={classes.containerTitle}>
                 <div className={classes.itemTitle}>Tools</div>
               </div>
-              <div className={classes.containerItem}>
-                <div className={classes.toolItem}>
+                <div className={classes.containerItem}>
                   <Typography variant="h3" className={classes.itemTitle}>
                     {checked ? "Dark Mode" : "Light Mode"}
                   </Typography>{" "}
@@ -274,19 +279,23 @@ function Sidebar() {
                     defaultChecked={checked}
                   />
                 </div>
-              </div>
-              <div className={classes.containerItem}>
-                <div className={classes.toolItem}>
+                <div className={classes.containerItem}>
                   <Typography variant="h3" 
                    onClick={download()}
                    className={classes.itemTitle}>
                     Get My Cv
-                  </Typography>{" "}
+                  </Typography>
                   <Button >
                     <img src={downloadButton} style={{width:"100%", height:"30px"}} alt="" />
                   </Button>
                 </div>
-              </div>
+                <br />
+                <div className={classes.containerItem}>
+                <Typography variant="h3" 
+                  className={classes.itemTitle} sx={{float:"right"}}>
+                    Version : {pjson.version}
+                  </Typography>
+                </div>
             </div>
           </div>
         );
