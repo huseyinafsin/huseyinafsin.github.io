@@ -34,7 +34,7 @@ function StackComponent({ n }) {
     <div>
       <Typography variant="caption">Stack</Typography>
       <Typography variant="subtitle1">
-        Tools I use & love that you should check out.
+        Tools I use & learn that you should check out.
       </Typography>
 
       <Grid container spacing={2}>
