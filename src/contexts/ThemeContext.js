@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import React, { Component, createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext();
 let theme = createTheme({
@@ -89,24 +89,29 @@ const lightTheme = createTheme(theme,{
     }
   },
 });
-class ThemeContextProvider extends Component {
-  state = {
-    isDarkTheme: false,
-    light: lightTheme,
-    dark: darkTheme,
-  };
 
-  toggleTheme = () =>{
-    this.setState({isDarkTheme : !this.state.isDarkTheme})
+
+function ThemeContextProvider (props) {
+
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const [light] = useState(lightTheme)
+  const [dark] = useState(darkTheme)
+  const toggleTheme = () =>{
+    setIsDarkTheme({isDarkTheme : !isDarkTheme})
   }
 
-  render() {
+       
+  useEffect(()=>{
+    const navbar = document.getElementsByTagName('header')[0];
+    const navbarColor = window.getComputedStyle(navbar).backgroundColor;
+    const body = document.getElementsByTagName('body')[0];
+    body.style.backgroundColor =navbarColor
+  },[isDarkTheme])
     return (
-      <ThemeContext.Provider value={{ ...this.state, toggleTheme: this.toggleTheme }}>
-        {this.props.children}
+      <ThemeContext.Provider value={{ isDarkTheme, dark, light, toggleTheme: toggleTheme }}>
+        {props.children}
       </ThemeContext.Provider>
     );
-  }
 }
 
 export default ThemeContextProvider;
