@@ -29,12 +29,12 @@ const SidebarProvider = (props) => {
             icon: <NearMeRounded />,
             path: "projects",
           },
-          {
-            id: uuidv1(),
-            name: "Boutique",
-            icon: <ShoppingBagRoundedIcon />,
-            path: "boutique",
-          },
+          // {
+          //   id: uuidv1(),
+          //   name: "Boutique",
+          //   icon: <ShoppingBagRoundedIcon />,
+          //   path: "boutique",
+          // },
           {
             id: uuidv1(),
             name: "Writings",

@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems:"center"
   },
   profile: {
-    width: "210px",
-    height: "200px",
+    width: "310px",
+    height: "300px",
     display:"flex",
     justifyContent:"center"
   },

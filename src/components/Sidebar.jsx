@@ -1,7 +1,8 @@
 import { React, useContext, useState } from "react";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Avatar, Button, IconButton, Typography } from "@mui/material";
 import downloadButton from "../assets/icons/download-svgrepo-com.svg";
 import { Image } from "react-bootstrap";
+import profile from "../assets/img/yellow.jpg";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   sidebar: {
     backgroundColor: theme.palette.grey[50],
     color: theme.palette.primary.main,
-    width: "15%",
+    width: "25%",
     borderRight: theme.palette.grey[300],
     left: 0,
     [theme.breakpoints.down("md")]: {
@@ -185,13 +186,7 @@ function Sidebar() {
           >
             <div className={classes.containerProfile}>
               <div className={classes.profileBox}>
-                <Image
-                  src={
-                    "https://avatars.githubusercontent.com/u/42337444?s=400&v=4"
-                  }
-                  alt=""
-                  className={classes.profileImage}
-                />
+              <Avatar alt={"dd"} src={profile}  sx={{width:"50px", height:"50px"}}   />
                 <div className={classes.ppTitle}>
                   <Typography variant="h3">Hüseyin Afşin</Typography>
                   <Typography variant="subtitle1">

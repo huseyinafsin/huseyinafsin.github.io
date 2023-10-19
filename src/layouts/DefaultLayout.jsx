@@ -17,13 +17,15 @@ const useStyles = makeStyles((theme) => {
     root: {
       display: "flex",
       flexDirection: "row",
-      width: "100%"
+      width: "100%",
+      margin:0,
+      padding:0
     },
     page: {
       color: theme.palette.primary.main,
       background: theme.palette.secondary.main,
       minHeight: "100vh",
-      width: `calc(100% - ${drawerWidth}px)  !important`,
+      width: `100% !important`,
       [theme.breakpoints.down('md')]: {
         width: "100% !important",
       },
@@ -57,25 +59,25 @@ const useStyles = makeStyles((theme) => {
 
 function DefaultLayout({ children }) {
   const classes = useStyles();
-  const {isMenuOpen} = useContext(LayoutContext)
+  const { isMenuOpen } = useContext(LayoutContext)
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <div className={classes.root}>
-      <SidebarProvider>
-        <Sidebar />
-      </SidebarProvider>
-      <div className={classes.page} style={( isMenuOpen && matches) ? {display:"none",} :{} }>
-        <Navbar />
-        <Grid className={classes.content} style={( matches) ? {display:"flex", justifyContent:"center" , padding:"5%"} :{} }>
-          <div className={classes.container}
-          style={( matches) ? {margin: "5% 0% 0"} :{} }
-          >{children}</div>
-        </Grid>
-        <Footer className={classes.footer} />
+      <div className={classes.root}>
+        <SidebarProvider>
+          <Sidebar />
+        </SidebarProvider>
+        <div className={classes.page} style={(isMenuOpen && matches) ? { display: "none", } : {}}>
+          <Navbar />
+          <Grid className={classes.content} style={(matches) ? { display: "flex", justifyContent: "center", padding: "5%" } : {}}>
+            <div className={classes.container}
+              style={(matches) ? { margin: "5% 0% 0" } : {}}
+            >{children}</div>
+          </Grid>
+          <Footer className={classes.footer} />
+        </div>
       </div>
-    </div>
   );
 }
 export default DefaultLayout;

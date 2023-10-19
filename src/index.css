@@ -2,20 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Borel&family=Inter:wght@600&family=Lexend+Tera:wght@200;300&display=swap');
 
   body {
-  font-family: -apple-system, BlinkMacSystemFont,'Inter', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 #root{
   padding: 0;
+  margin: 0;
 }
