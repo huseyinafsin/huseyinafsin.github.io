@@ -3,12 +3,26 @@ import StackComponent from '../components/StackComponet'
 import { makeStyles } from "@mui/styles";
 import CircleAvatar from '../components/CircleAvatar';
 import profile from "../assets/img/yellow.jpg";
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography } from "@mui/material";
 const useStyles = makeStyles((theme) => ({
-  container:{
-    height:"400px"
+  container: {
+    height: "400px",
+    display: "flex",
+    flexDirection:"column",
+    justifyContent: "center",
+    alignItems:"center"
   },
-
+  profile: {
+    width: "210px",
+    height: "200px",
+    display:"flex",
+    justifyContent:"center"
+  },
+  body: {
+    marginTop: "5%",
+    display:"flex",
+    alignSelf:"start"
+  },
 }));
 
 
@@ -26,27 +40,28 @@ function Home() {
     }, 2000);
     
     return () => clearInterval(interval);
-  })
+
+  });
   return (
-      <div>
-        <div className={classes.container} >
-          <Grid container >
-            <Grid columns={{  sm: 6, lg: 8 }}>
-              <Typography variant='caption' >
-              Hey, I'm Hüseyin. I design <span id='changingText' style={{color:"#7c7f82"}}> {text} </span>
-              </Typography>
-              <br />
-              <br />
-              <Typography variant='body1'>
-                  I experienced at Software Development based in Cyprus.
-              </Typography>
-            </Grid>
-            <Grid itemcolumns={{  sm: 6, lg: 8 }}>
-            <CircleAvatar src={profile} alt="Profile Picture" style={{width:"300px", height:"300px"}} />
-            </Grid>
+    <div>
+      <Typography variant="caption">
+        Hey, I'm Hüseyin. I design{" "}
+        <span id="changingText" style={{ color: "#7c7f82" }}>
+          {text}
+        </span>
+      </Typography>
+      <br />
+      <br />
+      <div className={classes.container}>
+          <Grid className={classes.profile}>
+            <CircleAvatar src={profile} alt="Profile Picture" />
           </Grid>
-        </div>
-        <StackComponent n={4}/>
+          <Grid className={classes.body}>
+            <Typography variant="body1">
+              I experienced at Software Development based in Cyprus.
+            </Typography>
+          </Grid>
+      </div>
       </div>
       
     )
