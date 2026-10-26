@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hüseyin Afşin · Yazılım Notları</title>
+    <link>https://huseyinafsin.github.io/</link>
+    <description>Yazılım, mimari ve teknoloji üzerine kısa, uygulanabilir yazılar.</description>
+    <language>tr</language>
+    <atom:link href="https://huseyinafsin.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Merhaba: Bu blogda ne yazacağım</title>
+      <link>https://huseyinafsin.github.io/writings/ilk-yazi</link>
+      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/ilk-yazi</guid>
+      <pubDate>Mon, 26 Oct 2026 09:00:00 GMT</pubDate>
+      <description>Yazılım geliştirirken öğrendiklerimi, aldığım notları ve denediğim yaklaşımları burada topluyorum. Kısa bir merhaba yazısı.</description>
+      <category>Merhaba</category>
+      <category>Blog</category>
+    </item>
+    <item>
+      <title>Bu blog nasıl çalışıyor?</title>
+      <link>https://huseyinafsin.github.io/writings/bu-blog-nasil-calisiyor</link>
+      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/bu-blog-nasil-calisiyor</guid>
+      <pubDate>Tue, 20 Oct 2026 09:00:00 GMT</pubDate>
+      <description>Sunucusuz, veritabanısız ve panel olmadan markdown dosyalarıyla yazı yayınlayan bu sitenin arkasındaki basit yapı.</description>
+      <category>React</category>
+      <category>Markdown</category>
+      <category>Statik Site</category>
+    </item>
+  </channel>
+</rss>
