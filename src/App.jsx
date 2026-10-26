@@ -1,58 +1,31 @@
-import { Route, Routes } from "react-router-dom";
+import React, { useMemo } from "react";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Navigate, Route, Routes } from "react-router-dom";
 
-import About from "./pages/About";
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import { ThemeProvider } from "@mui/material";
-import Error404 from "./pages/Error404";
-import DefaultLayout from "./layouts/DefaultLayout";
-import EmptyLayout from "./layouts/EmptyLayout";
-import React from "react";
-import { ThemeContext } from "./contexts/ThemeContext";
-import Stack from "./pages/Stack";
-import LayoutProvider from "./contexts/Layout.Context";
-import UserDataProvider from "./contexts/UserDataContext";
-import Projects from "./pages/Projects";
-import Wiritings from "./pages/Wiritings";
-import Writing from "./pages/Writing";
+import BlogLayout from "./layouts/BlogLayout";
+import PostList from "./pages/PostList";
+import Post from "./pages/Post";
+import NotFound from "./pages/NotFound";
+import { ColorModeContext } from "./contexts/ColorModeContext";
+import { getDesignTokens } from "./theme";
 
 function App() {
+  const { mode } = React.useContext(ColorModeContext);
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   return (
-    <ThemeContext.Consumer>
-      {(context) => {
-        const { isDarkTheme, light, dark } = context;
-        const theme = isDarkTheme ? light : dark;
-        return (
-          <ThemeProvider theme={theme}>
-            <LayoutProvider>
-              <DefaultLayout>
-                <UserDataProvider>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/stack" element={<Stack />} />
-                    <Route path="/boutique" element={<Stack />} />
-                    <Route path="/writings" element={<Wiritings />} />
-                    <Route path="/writings/:slug" element={<Writing />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/404" element={<Error404 />} />
-                    <Route path="*" element={<Error404 />} />
-                  </Routes>
-                </UserDataProvider>
-              </DefaultLayout>
-              {/* <EmptyLayout>
-                <Routes>
-                  <Route path="/404" element={<Error404 />} />
-                  <Route path="*" element={<Error404 />} />
-                </Routes>
-              </EmptyLayout> */}
-            </LayoutProvider>
-          </ThemeProvider>
-        );
-      }}
-    </ThemeContext.Consumer>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Routes>
+        <Route element={<BlogLayout />}>
+          <Route path="/" element={<PostList />} />
+          <Route path="/writings" element={<Navigate to="/" replace />} />
+          <Route path="/writings/:slug" element={<Post />} />
+          <Route path="/:slug" element={<Post />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </ThemeProvider>
   );
 }
 

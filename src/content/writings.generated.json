@@ -1,15 +1,29 @@
 [
   {
     "slug": "ilk-yazi",
-    "title": "İlk Yazı: Burada Neler Paylaşacağım",
+    "title": "Merhaba: Bu blogda ne yazacağım",
     "date": "2026-10-26",
-    "summary": "Yazılım, teknoloji ve öğrenme sürecimde biriktirdiklerimi paylaşacağım yeni yazı alanının kısa tanıtımı.",
+    "summary": "Yazılım geliştirirken öğrendiklerimi, aldığım notları ve denediğim yaklaşımları burada topluyorum. Kısa bir merhaba yazısı.",
     "tags": [
       "Merhaba",
-      "Notlar"
+      "Blog"
     ],
     "cover": "",
     "readingTime": 1,
-    "content": "# Merhaba\n\nBurası sitenin **yazılar** alanı. Bundan sonra yazılım geliştirme, kullandığım\nteknolojiler ve öğrenirken not aldığım konuları burada toplayacağım.\n\n## Neler yazacağım?\n\n- .NET ve C# tarafında edindiğim deneyimler\n- React ve arayüz geliştirme notları\n- Mimari, veritabanı ve dağıtık sistemler üzerine kısa kısa notlar\n- Okuduğum kaynaklardan çıkardığım dersler\n\n## Bu alan nasıl çalışıyor?\n\nHer yazı `src/content/writings/` klasöründe ayrı bir markdown dosyası olarak\nduruyor. Yeni bir dosya eklediğimde site onu otomatik olarak listeye alıyor.\nKod yazmam gerekmiyor, sadece yazıyı ekliyorum.\n\n> Bir sonraki yazıda görüşmek üzere.\n\nKod örneği de ekleyebiliyorum:\n\n```csharp\npublic class Merhaba\n{\n    public string Mesaj => \"Hello, world!\";\n}\n```\n\nDetaylar için `src/content/writings/_KULLANIM.md` dosyasına bakabilirsiniz."
+    "content": "# Merhaba\n\nBurası benim yazı alanım. Uzun süredir not aldığım konuları dağınık\ndosyalardan çıkarıp tek bir yerde toplamak istiyordum. Bu blog tam olarak bunun\niçin var: **öğrendiğimi yazıya dökmek**.\n\n## Neler yazacağım?\n\n- .NET ve C# tarafında edindiğim deneyimler\n- React ve arayüz geliştirme notları\n- Mimari, veritabanı ve dağıtık sistemler üzerine kısa notlar\n- Bir problemi çözerken denediğim yollar ve sonuçları\n- Okuduğum kaynaklardan çıkardığım dersler\n\nYazıları mümkün olduğunca kısa ve uygulanabilir tutmaya çalışacağım. Uzun\nteorik anlatımlardan çok, işe yarayan örneklere yer vermeyi hedefliyorum.\n\n## Neden statik bir blog?\n\nBu site React ile yazılmış statik bir uygulama. Yazılar markdown dosyaları\nolarak duruyor, derleme sırasında listeye dönüşüyor. Sunucu, veritabanı veya\nyönetim paneli yok. Bu da hızlı, ucuz ve bakımı kolay bir kurulum sağlıyor.\n\nNasıl çalıştığını merak ediyorsanız bir sonraki yazıya göz atabilirsiniz.\n\n> Bir sonraki yazıda görüşmek üzere."
+  },
+  {
+    "slug": "bu-blog-nasil-calisiyor",
+    "title": "Bu blog nasıl çalışıyor?",
+    "date": "2026-10-20",
+    "summary": "Sunucusuz, veritabanısız ve panel olmadan markdown dosyalarıyla yazı yayınlayan bu sitenin arkasındaki basit yapı.",
+    "tags": [
+      "React",
+      "Markdown",
+      "Statik Site"
+    ],
+    "cover": "",
+    "readingTime": 1,
+    "content": "Bu site React ile yazılmış statik bir uygulama. Amaç basit: **yeni bir yazı\neklemek için kod yazmak zorunda kalmamak**.\n\n## Yazılar markdown dosyası\n\nHer yazı `src/content/writings/` klasöründe ayrı bir dosya:\n\n```text\nsrc/content/writings/\n  2026-10-26-ilk-yazi.md\n  2026-10-20-bu-blog-nasil-calisiyor.md\n  _sablon.md\n```\n\nDosya adındaki tarih ve başlık yeterli. İsterseniz dosyanın başına front matter\nekleyerek özet, etiket ve kapak görseli tanımlayabiliyorsunuz.\n\n```yaml\n---\ntitle: \"Bu blog nasıl çalışıyor?\"\ndate: \"2026-10-20\"\nsummary: \"Kısa bir özet.\"\ntags: [\"React\", \"Markdown\"]\n---\n```\n\n## Derleme adımı\n\n`npm start` ve `npm run build` komutlarından önce küçük bir Node betiği\nçalışıyor. Bu betik markdown dosyalarını okuyup uygulamanın kullandığı JSON\nlistesini üretiyor. Ardından React bu listeyi normal bir veri kaynağı gibi\nkullanıyor.\n\n```js\nconst post = getWritingBySlug(slug);\n```\n\nYani yeni yazı eklemek için yapılan tek şey bir dosya oluşturmak. Liste, yazı\nsayfası, önceki/sonraki bağlantıları ve okuma süresi otomatik hesaplanıyor.\n\n## Neden veritabanı yok?\n\nBir yazıyı yayınlamak için ihtiyaç duyduğum şeyler şunlar:\n\n1. Metni saklayacak bir yer\n2. Sürüm geçmişi\n3. Hızlı ve güvenli bir yayın\n\nGit ve statik hosting bu üçünü bedavaya sağlıyor. Veritabanı, kimlik doğrulama\nve yönetim paneli gibi katmanlar bu ölçekte sadece bakım yükü olurdu.\n\n## Sonuç\n\nBasit bir betik, biraz React ve markdown. Hepsi bu. Geri kalan zaman yazmaya\nkalıyor."
   }
 ]

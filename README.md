@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Hüseyin Afşin · Yazılım Notları
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Markdown dosyalarıyla yazı yayınlanan, React ile yazılmış statik kişisel blog.
+Sunucu, veritabanı ve yönetim paneli yok.
 
-## Available Scripts
+**Site:** https://huseyinafsin.github.io/
 
-In the project directory, you can run:
+## Özellikler
 
-### `npm start`
+- Markdown tabanlı yazılar (front matter desteği)
+- Etiket filtreleme ve yazılarda arama
+- Açık/koyu tema (sistem tercihi + `localStorage`)
+- Yazı detay sayfası, okuma süresi, önceki/sonraki yazı
+- Otomatik `sitemap.xml` ve RSS (`feed.xml`) üretimi
+- GitHub Pages için derin bağlantı desteği (`404.html` yönlendirmesi)
+- Vercel / Netlify yapılandırmaları hazır
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Kurulum
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm install
+npm start
+```
 
-### `npm test`
+`http://localhost:3000` adresinde açılır.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Yazı ekleme
 
-### `npm run build`
+1. `src/content/writings/` içine `YYYY-AA-GG-baslik.md` adında dosya oluşturun.
+2. Başına front matter ekleyin:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```yaml
+---
+title: "Yazı başlığı"
+date: "2026-11-02"
+summary: "Listede görünecek kısa özet"
+tags: ["C#", "Performans"]
+cover: ""
+draft: false
+---
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Yazıyı markdown ile yazın.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ayrıntılı kılavuz: [`src/content/writings/_KULLANIM.md`](src/content/writings/_KULLANIM.md)
+Şablon: [`src/content/writings/_sablon.md`](src/content/writings/_sablon.md)
 
-### `npm run eject`
+## Komutlar
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Komut | Açıklama |
+| --- | --- |
+| `npm start` | Geliştirme sunucusu |
+| `npm run build` | Üretim derlemesi (`build/`) |
+| `npm run writings` | Markdown listesini, sitemap ve RSS'i yeniler |
+| `npm run deploy` | `build/` çıktısını `gh-pages` dalına yayınlar |
+| `npm test` | Testler |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Yapı
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```text
+public/                     statik dosyalar, 404 yönlendirmesi, favicon
+scripts/build-writings.js   markdown -> JSON + sitemap + RSS
+src/components/Markdown.jsx bağımlılıksız markdown görüntüleyici
+src/content/writings/       yazılar (.md)
+src/layouts/BlogLayout.jsx  üst menü ve alt bilgi
+src/pages/                  yazı listesi, yazı detayı, 404
+src/theme.js                MUI tema (açık/koyu)
+src/utils/writings.js       yazı yardımcıları
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Yayınlama
 
-## Learn More
+`.github/workflows/node.js.yml` `blog` dalına yapılan push'larda siteyi derleyip
+`gh-pages` dalına gönderir. GitHub Pages kaynağı: `gh-pages` / root.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Alternatif olarak Vercel veya Netlify üzerinden de yayınlanabilir; gerekli
+yapılandırma dosyaları (`vercel.json`, `netlify.toml`) depoda mevcut.

@@ -1,19 +1,20 @@
 import React from "react";
-import { Box, Link as MuiLink } from "@mui/material";
+import { Box, Link as MuiLink, useTheme } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 /**
- * Bağımlılık eklemeden kullanılan küçük bir markdown görüntüleyici.
- * Başlık, paragraf, liste, alıntı, kod bloğu, görsel, bağlantı ve
+ * Bağımlılık gerektirmeyen küçük markdown görüntüleyici.
+ * Başlık, paragraf, liste, alıntı, kod bloğu, görsel, bağlantı, tablo ve
  * temel satır içi biçimlendirmeyi destekler.
  */
 
 const INLINE_PATTERN =
   /(!\[[^\]]*\]\([^)]*\)|\[[^\]]+\]\([^)]*\)|\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|`[^`]+`|\*[^*\n]+\*)/g;
 
-function isInternal(href) {
-  return href.startsWith("/") || href.startsWith("#");
-}
+const isInternal = (href) => href.startsWith("/") || href.startsWith("#");
+
+const CODE_FONT =
+  'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace';
 
 function renderInline(text, keyPrefix = "inline") {
   if (!text) return null;
@@ -34,9 +35,11 @@ function renderInline(text, keyPrefix = "inline") {
             alt={image[1]}
             sx={{
               display: "block",
-              maxWidth: "100%",
+              width: "100%",
               borderRadius: 2,
-              my: 2,
+              my: 3,
+              border: "1px solid",
+              borderColor: "divider",
             }}
           />
         );
@@ -47,12 +50,7 @@ function renderInline(text, keyPrefix = "inline") {
         const [, label, href] = link;
         if (isInternal(href)) {
           return (
-            <MuiLink
-              key={key}
-              component={RouterLink}
-              to={href}
-              underline="always"
-            >
+            <MuiLink key={key} component={RouterLink} to={href} underline="always">
               {label}
             </MuiLink>
           );
@@ -77,13 +75,15 @@ function renderInline(text, keyPrefix = "inline") {
             key={key}
             component="code"
             sx={{
-              fontFamily:
-                'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace',
-              fontSize: "0.9em",
+              fontFamily: CODE_FONT,
+              fontSize: "0.86em",
               px: 0.6,
               py: 0.2,
-              borderRadius: 1,
-              backgroundColor: "rgba(127, 127, 127, 0.18)",
+              borderRadius: 0.75,
+              border: "1px solid",
+              borderColor: "divider",
+              backgroundColor: "action.hover",
+              whiteSpace: "nowrap",
             }}
           >
             {code[1]}
@@ -94,7 +94,7 @@ function renderInline(text, keyPrefix = "inline") {
       const bold = part.match(/^(?:\*\*([^*]+)\*\*|__([^_]+)__)$/);
       if (bold) {
         return (
-          <Box key={key} component="strong" sx={{ fontWeight: 700 }}>
+          <Box key={key} component="strong" sx={{ fontWeight: 600 }}>
             {renderInline(bold[1] || bold[2], key)}
           </Box>
         );
@@ -103,7 +103,7 @@ function renderInline(text, keyPrefix = "inline") {
       const strike = part.match(/^~~([^~]+)~~$/);
       if (strike) {
         return (
-          <Box key={key} component="del">
+          <Box key={key} component="del" sx={{ opacity: 0.7 }}>
             {renderInline(strike[1], key)}
           </Box>
         );
@@ -130,8 +130,18 @@ function isBlockStart(line) {
     /^\s*>\s?/.test(line) ||
     /^\s*[-*+]\s+/.test(line) ||
     /^\s*\d+[.)]\s+/.test(line) ||
-    /^\s*!\[[^\]]*\]\([^)]*\)\s*$/.test(line)
+    /^\s*!\[[^\]]*\]\([^)]*\)\s*$/.test(line) ||
+    /^\s*\|.*\|\s*$/.test(line)
   );
+}
+
+function splitTableRow(line) {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
 }
 
 function parseBlocks(content) {
@@ -176,6 +186,18 @@ function parseBlocks(content) {
     if (/^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(line)) {
       blocks.push({ type: "hr" });
       index += 1;
+      continue;
+    }
+
+    if (/^\s*\|.*\|\s*$/.test(line) && /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[index + 1] || "")) {
+      const header = splitTableRow(line);
+      index += 2;
+      const rows = [];
+      while (index < lines.length && /^\s*\|.*\|\s*$/.test(lines[index])) {
+        rows.push(splitTableRow(lines[index]));
+        index += 1;
+      }
+      blocks.push({ type: "table", header, rows });
       continue;
     }
 
@@ -232,13 +254,13 @@ function parseBlocks(content) {
   return blocks;
 }
 
-const headings = {
+const HEADING_STYLES = {
   1: { fontSize: "1.9rem", mt: 0, mb: 2 },
-  2: { fontSize: "1.45rem", mt: 4, mb: 1.5 },
-  3: { fontSize: "1.2rem", mt: 3, mb: 1 },
+  2: { fontSize: "1.5rem", mt: 5, mb: 1.5 },
+  3: { fontSize: "1.2rem", mt: 4, mb: 1.25 },
   4: { fontSize: "1.05rem", mt: 3, mb: 1 },
-  5: { fontSize: "1rem", mt: 2, mb: 1 },
-  6: { fontSize: "0.95rem", mt: 2, mb: 1 },
+  5: { fontSize: "1rem", mt: 3, mb: 1 },
+  6: { fontSize: "0.95rem", mt: 3, mb: 1 },
 };
 
 function headingId(text) {
@@ -253,16 +275,22 @@ function headingId(text) {
 }
 
 function Markdown({ content }) {
+  const theme = useTheme();
   const blocks = parseBlocks(content);
 
   return (
     <Box
       sx={{
-        fontSize: "17px",
-        lineHeight: 1.85,
-        "& p": { my: 2 },
-        "& strong": { fontWeight: 700 },
-        "& a": { color: "inherit" },
+        fontSize: { xs: 16, sm: 17 },
+        lineHeight: 1.8,
+        color: "text.primary",
+        "& p": { my: 2.5 },
+        "& a": {
+          color: "text.primary",
+          textDecorationColor: "text.secondary",
+          textUnderlineOffset: "3px",
+          "&:hover": { textDecorationColor: "text.primary" },
+        },
       }}
     >
       {blocks.map((block, index) => {
@@ -270,17 +298,18 @@ function Markdown({ content }) {
 
         switch (block.type) {
           case "heading": {
-            const style = headings[block.level] || headings[3];
+            const style = HEADING_STYLES[block.level] || HEADING_STYLES[3];
             return (
               <Box
                 key={key}
                 component={`h${block.level}`}
                 id={headingId(block.text)}
                 sx={{
-                  fontFamily: "Inter, sans-serif",
+                  fontFamily: '"Inter", sans-serif',
                   fontWeight: 600,
+                  letterSpacing: "-0.02em",
                   lineHeight: 1.3,
-                  scrollMarginTop: "80px",
+                  scrollMarginTop: "88px",
                   ...style,
                 }}
               >
@@ -292,25 +321,48 @@ function Markdown({ content }) {
             return (
               <Box
                 key={key}
-                component="pre"
                 sx={{
-                  my: 3,
-                  p: 2,
+                  position: "relative",
+                  my: 3.5,
                   borderRadius: 2,
-                  overflowX: "auto",
-                  backgroundColor: "rgba(127, 127, 127, 0.14)",
-                  fontSize: "14px",
-                  lineHeight: 1.6,
+                  border: "1px solid",
+                  borderColor: "divider",
+                  backgroundColor:
+                    theme.palette.mode === "dark" ? "#0f0f11" : "#f6f6f5",
+                  overflow: "hidden",
                 }}
               >
+                {block.lang && (
+                  <Box
+                    component="span"
+                    sx={{
+                      position: "absolute",
+                      top: 8,
+                      right: 12,
+                      fontSize: 11,
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                      color: "text.secondary",
+                      fontFamily: CODE_FONT,
+                    }}
+                  >
+                    {block.lang}
+                  </Box>
+                )}
                 <Box
-                  component="code"
+                  component="pre"
                   sx={{
-                    fontFamily:
-                      'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace',
+                    m: 0,
+                    p: { xs: 2, sm: 2.5 },
+                    pt: block.lang ? 3.5 : 2.5,
+                    overflowX: "auto",
+                    fontSize: 13.5,
+                    lineHeight: 1.7,
                   }}
                 >
-                  {block.text}
+                  <Box component="code" sx={{ fontFamily: CODE_FONT }}>
+                    {block.text}
+                  </Box>
                 </Box>
               </Box>
             );
@@ -320,12 +372,13 @@ function Markdown({ content }) {
                 key={key}
                 component="blockquote"
                 sx={{
-                  my: 3,
+                  my: 3.5,
                   mx: 0,
                   pl: 2.5,
-                  borderLeft: "3px solid",
-                  borderColor: "divider",
+                  borderLeft: "2px solid",
+                  borderColor: "text.primary",
                   color: "text.secondary",
+                  fontSize: "1.02em",
                   fontStyle: "italic",
                 }}
               >
@@ -337,22 +390,66 @@ function Markdown({ content }) {
               <Box
                 key={key}
                 component={block.ordered ? "ol" : "ul"}
-                sx={{ my: 2, pl: 3 }}
+                sx={{ my: 2.5, pl: 3, "& li": { my: 0.75, pl: 0.5 } }}
               >
                 {block.items.map((item, itemIndex) => (
                   <Box
                     key={`${key}-${itemIndex}`}
                     component="li"
-                    sx={{ my: 0.5 }}
+                    sx={{ "&::marker": { color: "text.secondary" } }}
                   >
                     {renderInline(item, `${key}-${itemIndex}`)}
                   </Box>
                 ))}
               </Box>
             );
+          case "table":
+            return (
+              <Box key={key} sx={{ my: 3.5, overflowX: "auto" }}>
+                <Box
+                  component="table"
+                  sx={{
+                    width: "100%",
+                    borderCollapse: "collapse",
+                    fontSize: 14.5,
+                    "& th, & td": {
+                      borderBottom: "1px solid",
+                      borderColor: "divider",
+                      px: 1.5,
+                      py: 1.25,
+                      textAlign: "left",
+                      verticalAlign: "top",
+                    },
+                    "& th": { fontWeight: 600, color: "text.primary" },
+                    "& td": { color: "text.secondary" },
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      {block.header.map((cell, cellIndex) => (
+                        <th key={`${key}-h-${cellIndex}`}>
+                          {renderInline(cell, `${key}-h-${cellIndex}`)}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {block.rows.map((row, rowIndex) => (
+                      <tr key={`${key}-r-${rowIndex}`}>
+                        {row.map((cell, cellIndex) => (
+                          <td key={`${key}-r-${rowIndex}-${cellIndex}`}>
+                            {renderInline(cell, `${key}-r-${rowIndex}-${cellIndex}`)}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </Box>
+              </Box>
+            );
           case "hr":
             return (
-              <Box key={key} component="hr" sx={{ my: 4, borderColor: "divider" }} />
+              <Box key={key} component="hr" sx={{ my: 5, borderColor: "divider" }} />
             );
           case "image":
             return (
@@ -363,15 +460,17 @@ function Markdown({ content }) {
                 alt={block.alt}
                 sx={{
                   display: "block",
-                  maxWidth: "100%",
+                  width: "100%",
                   borderRadius: 2,
-                  my: 3,
+                  my: 4,
+                  border: "1px solid",
+                  borderColor: "divider",
                 }}
               />
             );
           default:
             return (
-              <Box key={key} component="p" sx={{ my: 2 }}>
+              <Box key={key} component="p">
                 {renderInline(block.text, key)}
               </Box>
             );

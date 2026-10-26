@@ -39,8 +39,8 @@ draft: false
 | `title` | Hayır | Boşsa dosyadaki ilk `# başlık` kullanılır. |
 | `date` | Hayır | Boşsa dosya adındaki tarih kullanılır. |
 | `summary` | Hayır | Boşsa yazının ilk paragrafından üretilir. |
-| `tags` | Hayır | Listede etiket olarak gösterilir. |
-| `cover` | Hayır | Kartta görünecek kapak görseli. |
+| `tags` | Hayır | Listede etiket olarak gösterilir ve filtrede çıkar. |
+| `cover` | Hayır | Yazı sayfasında görünecek kapak görseli. |
 | `draft` | Hayır | `true` ise yazı sitede yayınlanmaz. |
 
 ## 3. Yazıyı yazın
@@ -54,6 +54,7 @@ Front matter'ın altına normal markdown ile yazın. Desteklenenler:
 - `>` alıntı
 - `[bağlantı](https://...)`
 - `![açıklama](/writings/resim.png)` görsel
+- Tablolar
 - `---` ayırıcı
 
 ## 4. Görsel ekleme
@@ -66,11 +67,12 @@ Görselleri `public/writings/` klasörüne koyun ve `/writings/dosya-adi.png`
 ```bash
 npm start        # geliştirme (yazılar otomatik işlenir)
 npm run build    # üretim derlemesi (yazılar otomatik işlenir)
+npm run deploy   # GitHub Pages'e gönder
 ```
 
 `npm start` açıkken yeni bir `.md` dosyası eklerseniz sunucuyu bir kez
 durdurup yeniden başlatın; mevcut yazılarda yaptığınız değişiklikler otomatik
 yenilenir.
 
-Üretilen `src/content/writings.generated.json` dosyasını elle düzenlemeyin,
-derleme sırasında yeniden oluşturulur.
+Ayrıca her derlemede `public/sitemap.xml` ve `public/feed.xml` (RSS) yeniden
+üretilir. `src/content/writings.generated.json` dosyasını elle düzenlemeyin.

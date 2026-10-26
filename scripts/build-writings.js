@@ -147,15 +147,26 @@ function collectWritings() {
       const date = data.date || fallbackDate || new Date().toISOString().slice(0, 10);
       const title = data.title || firstHeading(body) || slugFromFileName(fileName);
 
+      // Başlık sayfada ayrıca gösterildiği için içerikteki ilk H1 tekrarını at.
+      let content = body.trim();
+      const leadingHeading = content.match(/^#\s+(.+)\r?\n?/);
+      if (
+        leadingHeading &&
+        leadingHeading[1].trim().toLocaleLowerCase("tr") ===
+          title.trim().toLocaleLowerCase("tr")
+      ) {
+        content = content.slice(leadingHeading[0].length).trim();
+      }
+
       return {
         slug: data.slug ? slugify(data.slug) : slugFromFileName(fileName),
         title,
         date,
-        summary: data.summary || excerpt(body),
+        summary: data.summary || excerpt(content),
         tags: Array.isArray(data.tags) ? data.tags : [],
         cover: data.cover || "",
-        readingTime: readingTime(body),
-        content: body.trim(),
+        readingTime: readingTime(content),
+        content,
       };
     })
     .filter(Boolean)
@@ -185,3 +196,80 @@ console.log(
     outputFile
   )}`
 );
+
+/* ------------------------------------------------------------------ */
+/* SEO ve besleme dosyaları                                            */
+/* ------------------------------------------------------------------ */
+
+const SITE_URL = "https://huseyinafsin.github.io";
+const SITE_TITLE = "Hüseyin Afşin · Yazılım Notları";
+const SITE_DESCRIPTION =
+  "Yazılım, mimari ve teknoloji üzerine kısa, uygulanabilir yazılar.";
+const AUTHOR = "Hüseyin Afşin";
+
+function escapeXml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function postUrl(slug) {
+  return `${SITE_URL}/writings/${slug}`;
+}
+
+function rfc822(date) {
+  const parsed = new Date(`${date}T09:00:00Z`);
+  return (Number.isNaN(parsed.getTime()) ? new Date() : parsed).toUTCString();
+}
+
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  "  <url>",
+  `    <loc>${SITE_URL}/</loc>`,
+  "  </url>",
+  ...writings.map((writing) =>
+    [
+      "  <url>",
+      `    <loc>${postUrl(writing.slug)}</loc>`,
+      `    <lastmod>${writing.date}</lastmod>`,
+      "  </url>",
+    ].join("\n")
+  ),
+  "</urlset>",
+  "",
+].join("\n");
+
+const feed = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+  "  <channel>",
+  `    <title>${escapeXml(SITE_TITLE)}</title>`,
+  `    <link>${SITE_URL}/</link>`,
+  `    <description>${escapeXml(SITE_DESCRIPTION)}</description>`,
+  "    <language>tr</language>",
+  `    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />`,
+  ...writings.flatMap((writing) => [
+    "    <item>",
+    `      <title>${escapeXml(writing.title)}</title>`,
+    `      <link>${postUrl(writing.slug)}</link>`,
+    `      <guid isPermaLink="true">${postUrl(writing.slug)}</guid>`,
+    `      <pubDate>${rfc822(writing.date)}</pubDate>`,
+    `      <description>${escapeXml(writing.summary)}</description>`,
+    ...writing.tags.map(
+      (tag) => `      <category>${escapeXml(tag)}</category>`
+    ),
+    "    </item>",
+  ]),
+  "  </channel>",
+  "</rss>",
+  "",
+].join("\n");
+
+fs.writeFileSync(path.join(projectRoot, "public", "sitemap.xml"), sitemap, "utf8");
+fs.writeFileSync(path.join(projectRoot, "public", "feed.xml"), feed, "utf8");
+console.log("[writings] public/sitemap.xml ve public/feed.xml güncellendi");
+
