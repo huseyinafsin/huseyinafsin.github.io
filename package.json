@@ -27,8 +27,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prestart": "npm run writings",
     "build-local": "react-scripts build",
-    "build": "CI=true react-scripts build",
+    "prebuild": "npm run writings",
+    "build": "react-scripts build",
+    "writings": "node scripts/build-writings.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"

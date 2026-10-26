@@ -14,6 +14,7 @@ import LayoutProvider from "./contexts/Layout.Context";
 import UserDataProvider from "./contexts/UserDataContext";
 import Projects from "./pages/Projects";
 import Wiritings from "./pages/Wiritings";
+import Writing from "./pages/Writing";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                     <Route path="/stack" element={<Stack />} />
                     <Route path="/boutique" element={<Stack />} />
                     <Route path="/writings" element={<Wiritings />} />
+                    <Route path="/writings/:slug" element={<Writing />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/404" element={<Error404 />} />
                     <Route path="*" element={<Error404 />} />
