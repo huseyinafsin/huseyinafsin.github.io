@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a454bed9.css",
-    "main.js": "/static/js/main.3f144e6c.js",
+    "main.css": "/static/css/main.c38d2a2d.css",
+    "main.js": "/static/js/main.890a05c5.js",
     "static/js/787.e2e8916e.chunk.js": "/static/js/787.e2e8916e.chunk.js",
     "static/media/about.jpg": "/static/media/about.2dcfa032ea69dc3217be.jpg",
     "static/media/yellow.jpg": "/static/media/yellow.361fdbd338531d30b908.jpg",
@@ -15,16 +15,16 @@
     "static/media/download-svgrepo-com.svg": "/static/media/download-svgrepo-com.db173770fc8b2fd3c9f0bf641960cc84.svg",
     "static/media/dotnet.svg": "/static/media/dotnet.6378c2e6c02320d04cf3646f952a551a.svg",
     "static/media/spring-svgrepo-com.svg": "/static/media/spring-svgrepo-com.4075d0e0bcbcb1988713ccf4ab5ceb71.svg",
-    "static/media/database-svgrepo-com.svg": "/static/media/database-svgrepo-com.655702a1cf2eeeca66211cc73123df7e.svg",
     "index.html": "/index.html",
+    "static/media/database-svgrepo-com.svg": "/static/media/database-svgrepo-com.655702a1cf2eeeca66211cc73123df7e.svg",
     "static/media/html5-svgrepo-com.svg": "/static/media/html5-svgrepo-com.6fd1bb9b2f181e0c85247b3fa030f8df.svg",
     "static/media/angular-svgrepo-com.svg": "/static/media/angular-svgrepo-com.8d025088a1ff1e8c05194f4ddab7a0ad.svg",
-    "main.a454bed9.css.map": "/static/css/main.a454bed9.css.map",
-    "main.3f144e6c.js.map": "/static/js/main.3f144e6c.js.map",
+    "main.c38d2a2d.css.map": "/static/css/main.c38d2a2d.css.map",
+    "main.890a05c5.js.map": "/static/js/main.890a05c5.js.map",
     "787.e2e8916e.chunk.js.map": "/static/js/787.e2e8916e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a454bed9.css",
-    "static/js/main.3f144e6c.js"
+    "static/css/main.c38d2a2d.css",
+    "static/js/main.890a05c5.js"
   ]
 }

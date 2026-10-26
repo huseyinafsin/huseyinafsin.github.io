@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hüseyin Afşin</title>
+    <script>
+      /*
+       * GitHub Pages statik hosting olduğu için /writings/... gibi derin
+       * bağlantılar doğrudan açıldığında 404 döner. İstenen adresi sorgu
+       * parametresine çevirip uygulamaya devrediyoruz. (user site: 0 segment)
+       */
+      (function () {
+        var l = window.location;
+        var segmentCount = 0;
+        var base =
+          l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname.split("/").slice(0, 1 + segmentCount).join("/") +
+          "/";
+        var rest = l.pathname
+          .split("/")
+          .slice(1 + segmentCount)
+          .join("/")
+          .replace(/&/g, "~and~");
+        var query = l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "";
+        l.replace(base + "?/" + rest + query + l.hash);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
