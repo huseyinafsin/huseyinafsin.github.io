@@ -6,39 +6,5 @@
     <description>Yazılım, mimari ve teknoloji üzerine kısa, uygulanabilir yazılar.</description>
     <language>tr</language>
     <atom:link href="https://huseyinafsin.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>ghghghghgh</title>
-      <link>https://huseyinafsin.github.io/writings/yeni-yazi</link>
-      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/yeni-yazi</guid>
-      <pubDate>Wed, 28 Oct 2026 09:00:00 GMT</pubDate>
-      <description>ghgh</description>
-      <category>g</category>
-    </item>
-    <item>
-      <title>Test Yazı</title>
-      <link>https://huseyinafsin.github.io/writings/test-yazi</link>
-      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/test-yazi</guid>
-      <pubDate>Wed, 28 Oct 2026 09:00:00 GMT</pubDate>
-      <description>Test Yazı</description>
-    </item>
-    <item>
-      <title>Markdown blog&apos;a video, görsel ve kod eklemek</title>
-      <link>https://huseyinafsin.github.io/writings/medya-ve-kod</link>
-      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/medya-ve-kod</guid>
-      <pubDate>Tue, 27 Oct 2026 09:00:00 GMT</pubDate>
-      <description>Yazılarıma artık video gömebiliyorum, kod bloklarını kopyalanabilir hale getirdim ve her yazı için Instagram/WhatsApp paylaşım görseli üretiyorum. Kısa bir tur.</description>
-      <category>Markdown</category>
-      <category>Video</category>
-      <category>Tasarım</category>
-    </item>
-    <item>
-      <title>Merhaba: Bu blogda ne yazacağım</title>
-      <link>https://huseyinafsin.github.io/writings/ilk-yazi</link>
-      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/ilk-yazi</guid>
-      <pubDate>Mon, 26 Oct 2026 09:00:00 GMT</pubDate>
-      <description>Yazılım geliştirirken öğrendiklerimi, aldığım notları ve denediğim yaklaşımları burada topluyorum. Kısa bir merhaba yazısı.</description>
-      <category>Merhaba</category>
-      <category>Blog</category>
-    </item>
   </channel>
 </rss>
