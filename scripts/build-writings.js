@@ -123,7 +123,19 @@ function slugFromFileName(fileName) {
     fileName
       .replace(/\.md$/i, "")
       .replace(/^\d{4}-\d{2}-\d{2}-/, "")
+      .replace(/^\d{4}\s*-\s*/, "")
   );
+}
+
+/** Front matter ve H1 yoksa ilk düz metin satırını başlık olarak kullanır. */
+function firstLineTitle(body) {
+  const line = (body.split(/\r?\n/).find((item) => item.trim()) || "").trim();
+  if (!line) return "";
+  if (/^([-*+>|]|\d+[.)])\s/.test(line) || /^```|^!\[|^!video\[/.test(line)) {
+    return "";
+  }
+  const plain = stripMarkdown(line).trim();
+  return plain && plain.length <= 80 ? plain : "";
 }
 
 function collectWritings() {
@@ -145,18 +157,26 @@ function collectWritings() {
 
       const fallbackDate = dateFromFileName(fileName);
       const date = data.date || fallbackDate || new Date().toISOString().slice(0, 10);
-      const title = data.title || firstHeading(body) || slugFromFileName(fileName);
+      const heading = firstHeading(body);
+      const lineTitle = heading ? "" : firstLineTitle(body);
+      const title = data.title || heading || lineTitle || slugFromFileName(fileName);
 
       // Başlık sayfada ayrıca gösterildiği için içerikteki ilk H1 tekrarını at.
-      let content = body.trim();
-      const leadingHeading = content.match(/^#\s+(.+)\r?\n?/);
+      let content = body.replace(/\r\n/g, "\n").trim();
+      const leadingHeading = content.match(/^#\s+(.+)\n?/);
       if (
         leadingHeading &&
         leadingHeading[1].trim().toLocaleLowerCase("tr") ===
           title.trim().toLocaleLowerCase("tr")
       ) {
         content = content.slice(leadingHeading[0].length).trim();
+      } else if (lineTitle) {
+        // Başlık olarak kullanılan ilk satırı gövdeden çıkar.
+        content = content.replace(/^[^\n]*\n?/, "").trim();
       }
+
+      // Tek satırlık dosyalarda gövde boş kalmasın.
+      if (!content) content = body.replace(/\r\n/g, "\n").trim();
 
       return {
         slug: data.slug ? slugify(data.slug) : slugFromFileName(fileName),

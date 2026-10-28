@@ -1,7 +1,7 @@
 [
   {
     "slug": "test-yazi",
-    "title": "test-yazi",
+    "title": "Test Yazı",
     "date": "2026-10-28",
     "summary": "Test Yazı",
     "tags": [],
@@ -21,7 +21,7 @@
     ],
     "cover": "",
     "readingTime": 1,
-    "content": "Bu yazı, yeni stüdyoda neleri denediğimi göstermek için bir deneme alanı.\r\nAşağıdaki örnekler gerçekten çalışıyor, sayfayı kaydırıp bakabilirsiniz.\r\n\r\n## Video gömme\r\n\r\nTek satırla YouTube videosu eklenebiliyor. Altyazı da ekleyebilirsiniz.\r\n\r\n!video[Kanaldan kısa bir video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\r\n\r\nVimeo ve doğrudan `.mp4` bağlantıları da destekleniyor.\r\n\r\n## Görsel ve altyazı\r\n\r\n![Kod yazarken çekilmiş bir kare](https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=1200&q=70)\r\n\r\n## Kopyalanabilir kod\r\n\r\n```csharp\r\npublic sealed class Yazı\r\n{\r\n    public string Başlık { get; init; } = string.Empty;\r\n    public DateOnly Tarih { get; init; }\r\n    public IReadOnlyList<string> Etiketler { get; init; } = [];\r\n}\r\n```\r\n\r\n```typescript\r\nconst slugify = (text: string) =>\r\n  text\r\n    .toLowerCase()\r\n    .replace(/[çğıöşü]/g, (c) => ({ ç: \"c\", ğ: \"g\", ı: \"i\", ö: \"o\", ş: \"s\", ü: \"u\" })[c] ?? c)\r\n    .replace(/[^a-z0-9]+/g, \"-\");\r\n```\r\n\r\n## Tablo\r\n\r\n| Öğe | Durum |\r\n| --- | --- |\r\n| Video | Çalışıyor |\r\n| Görsel | Çalışıyor |\r\n| Kod | Çalışıyor |\r\n| Paylaşım görseli | Çalışıyor |\r\n\r\n> Her yazının altında paylaşım çubuğu var; oradan tek tıkla görsel üretebilirsiniz."
+    "content": "Bu yazı, yeni stüdyoda neleri denediğimi göstermek için bir deneme alanı.\nAşağıdaki örnekler gerçekten çalışıyor, sayfayı kaydırıp bakabilirsiniz.\n\n## Video gömme\n\nTek satırla YouTube videosu eklenebiliyor. Altyazı da ekleyebilirsiniz.\n\n!video[Kanaldan kısa bir video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\nVimeo ve doğrudan `.mp4` bağlantıları da destekleniyor.\n\n## Görsel ve altyazı\n\n![Kod yazarken çekilmiş bir kare](https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=1200&q=70)\n\n## Kopyalanabilir kod\n\n```csharp\npublic sealed class Yazı\n{\n    public string Başlık { get; init; } = string.Empty;\n    public DateOnly Tarih { get; init; }\n    public IReadOnlyList<string> Etiketler { get; init; } = [];\n}\n```\n\n```typescript\nconst slugify = (text: string) =>\n  text\n    .toLowerCase()\n    .replace(/[çğıöşü]/g, (c) => ({ ç: \"c\", ğ: \"g\", ı: \"i\", ö: \"o\", ş: \"s\", ü: \"u\" })[c] ?? c)\n    .replace(/[^a-z0-9]+/g, \"-\");\n```\n\n## Tablo\n\n| Öğe | Durum |\n| --- | --- |\n| Video | Çalışıyor |\n| Görsel | Çalışıyor |\n| Kod | Çalışıyor |\n| Paylaşım görseli | Çalışıyor |\n\n> Her yazının altında paylaşım çubuğu var; oradan tek tıkla görsel üretebilirsiniz."
   },
   {
     "slug": "ilk-yazi",
