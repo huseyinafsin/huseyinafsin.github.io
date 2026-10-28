@@ -14,6 +14,16 @@
       <description>Test Yazı</description>
     </item>
     <item>
+      <title>Markdown blog&apos;a video, görsel ve kod eklemek</title>
+      <link>https://huseyinafsin.github.io/writings/medya-ve-kod</link>
+      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/medya-ve-kod</guid>
+      <pubDate>Tue, 27 Oct 2026 09:00:00 GMT</pubDate>
+      <description>Yazılarıma artık video gömebiliyorum, kod bloklarını kopyalanabilir hale getirdim ve her yazı için Instagram/WhatsApp paylaşım görseli üretiyorum. Kısa bir tur.</description>
+      <category>Markdown</category>
+      <category>Video</category>
+      <category>Tasarım</category>
+    </item>
+    <item>
       <title>Merhaba: Bu blogda ne yazacağım</title>
       <link>https://huseyinafsin.github.io/writings/ilk-yazi</link>
       <guid isPermaLink="true">https://huseyinafsin.github.io/writings/ilk-yazi</guid>
