@@ -651,7 +651,7 @@ function Studio() {
                 type="date"
                 value={draft.date}
                 onChange={(event) => update("date", event.target.value)}
-                sx={{ width: { xs: "100%", sm: 200 } }}
+                sx={{ width: { xs: "100%", sm: 210 }, flexShrink: 0 }}
                 InputLabelProps={{ shrink: true }}
               />
               <TextField
