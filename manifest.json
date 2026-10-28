@@ -1,11 +1,11 @@
 {
-  "short_name": "Hüseyin Afşin",
-  "name": "Hüseyin Afşin · Yazılım Notları",
-  "description": "Yazılım, mimari ve teknoloji üzerine notlar.",
+  "short_name": "Model Atölyesi",
+  "name": "Model Atölyesi — bir eleştiri sahnesi",
+  "description": "Dört yapay zekâ maskotu, kırk bir repo ve mizahi bir eleştiri.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#fbfbfa",
-  "theme_color": "#fbfbfa",
+  "background_color": "#0a0908",
+  "theme_color": "#0a0908",
   "icons": [
     {
       "src": "favicon.svg",
