@@ -6,5 +6,12 @@
     <description>Yazılım, mimari ve teknoloji üzerine kısa, uygulanabilir yazılar.</description>
     <language>tr</language>
     <atom:link href="https://huseyinafsin.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test Yazı</title>
+      <link>https://huseyinafsin.github.io/writings/test-yazisi</link>
+      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/test-yazisi</guid>
+      <pubDate>Wed, 28 Oct 2026 09:00:00 GMT</pubDate>
+      <description>Test Yazı</description>
+    </item>
   </channel>
 </rss>
