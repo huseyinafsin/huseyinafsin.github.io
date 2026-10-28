@@ -40,15 +40,5 @@
       <category>Merhaba</category>
       <category>Blog</category>
     </item>
-    <item>
-      <title>Bu blog nasıl çalışıyor?</title>
-      <link>https://huseyinafsin.github.io/writings/bu-blog-nasil-calisiyor</link>
-      <guid isPermaLink="true">https://huseyinafsin.github.io/writings/bu-blog-nasil-calisiyor</guid>
-      <pubDate>Tue, 20 Oct 2026 09:00:00 GMT</pubDate>
-      <description>Sunucusuz, veritabanısız ve panel olmadan markdown dosyalarıyla yazı yayınlayan bu sitenin arkasındaki basit yapı.</description>
-      <category>React</category>
-      <category>Markdown</category>
-      <category>Statik Site</category>
-    </item>
   </channel>
 </rss>
