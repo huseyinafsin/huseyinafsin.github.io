@@ -1,6 +1,6 @@
 {
-  "name": "huseyinafsin-blog",
-  "version": "3.0.0",
+  "name": "model-atolyesi",
+  "version": "4.0.0",
   "private": true,
   "homepage": "https://huseyinafsin.github.io/",
   "dependencies": {
@@ -18,10 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "writings": "node scripts/build-writings.js",
-    "prestart": "npm run writings",
     "start": "react-scripts start",
-    "prebuild": "npm run writings",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -29,10 +26,17 @@
     "deploy": "gh-pages -d build -b gh-pages"
   },
   "eslintConfig": {
-    "extends": ["react-app", "react-app/jest"]
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

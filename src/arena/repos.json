@@ -1,0 +1,289 @@
+[
+  {
+    "name": "huseyinafsin.github.io",
+    "lang": "JavaScript",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "ApartmentManagmentSystem",
+    "lang": "C#",
+    "stars": 4,
+    "desc": "The apartment management system is a multi-layered system with a microservice architecture",
+    "fork": false
+  },
+  {
+    "name": "dronekit",
+    "lang": "Python",
+    "stars": 0,
+    "desc": "dronekit",
+    "fork": false
+  },
+  {
+    "name": "bookcollection",
+    "lang": "CSS",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "HRMS-2",
+    "lang": "CSS",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "OnlineTutorials",
+    "lang": "JavaScript",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "my-next-app",
+    "lang": "JavaScript",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "AspCore-Redis-Implementation",
+    "lang": "C#",
+    "stars": 0,
+    "desc": "AspCore-Redis-Implementation",
+    "fork": false
+  },
+  {
+    "name": "anarcho",
+    "lang": "",
+    "stars": 0,
+    "desc": "",
+    "fork": true
+  },
+  {
+    "name": "ReCap-Backend",
+    "lang": "HTML",
+    "stars": 0,
+    "desc": "Araba Kiralama Sistemi",
+    "fork": false
+  },
+  {
+    "name": "benieslestir",
+    "lang": "",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "springboot-samples",
+    "lang": "Java",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "microservices-config-server",
+    "lang": "",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "my-app-microservice",
+    "lang": "Java",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "aws-image-upload",
+    "lang": "Java",
+    "stars": 0,
+    "desc": "Uploading files to AWS S3 service | Amigoscode-Tutoriol",
+    "fork": false
+  },
+  {
+    "name": "Quadcopter",
+    "lang": "",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "first-contributions",
+    "lang": "",
+    "stars": 0,
+    "desc": "🚀✨ Help beginners to contribute to open source projects",
+    "fork": true
+  },
+  {
+    "name": "odev-4-huseyinafsin",
+    "lang": "",
+    "stars": 0,
+    "desc": "odev-4-huseyinafsin created by GitHub Classroom",
+    "fork": true
+  },
+  {
+    "name": "odev-3-huseyinafsin",
+    "lang": "",
+    "stars": 0,
+    "desc": "odev-3-huseyinafsin created by GitHub Classroom",
+    "fork": true
+  },
+  {
+    "name": "odev-2-huseyinafsin",
+    "lang": "",
+    "stars": 0,
+    "desc": "odev-2-huseyinafsin created by GitHub Classroom",
+    "fork": true
+  },
+  {
+    "name": "MultipleRestaurantsManagmentSystem",
+    "lang": "C#",
+    "stars": 0,
+    "desc": ".Net Core Multiple restaurants managment system",
+    "fork": true
+  },
+  {
+    "name": "odev-1-huseyinafsin",
+    "lang": "",
+    "stars": 0,
+    "desc": "odev-1-huseyinafsin created by GitHub Classroom",
+    "fork": true
+  },
+  {
+    "name": "React-todo",
+    "lang": "JavaScript",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "kodluyoruzilkrepo",
+    "lang": "HTML",
+    "stars": 0,
+    "desc": "Kodluyoruz Eğitimi kapsamında açtığım ilk repo",
+    "fork": false
+  },
+  {
+    "name": "kodluyoruz-frontend-101-egitimi",
+    "lang": "",
+    "stars": 0,
+    "desc": "Kodluyoruz için Hazırladığım Video Eğitim Seti Repo'sudur. YouTube Kanalım: https://www.yo",
+    "fork": true
+  },
+  {
+    "name": "TraTaskBackend",
+    "lang": "C#",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "TraTaskReact",
+    "lang": "JavaScript",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "ardupilot",
+    "lang": "",
+    "stars": 0,
+    "desc": "ArduPlane, ArduCopter, ArduRover, ArduSub source",
+    "fork": true
+  },
+  {
+    "name": "ChatAPI",
+    "lang": "JavaScript",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "todo-react",
+    "lang": "JavaScript",
+    "stars": 0,
+    "desc": "A basic Todo app",
+    "fork": false
+  },
+  {
+    "name": "CampJava",
+    "lang": "Java",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "SinnalRCharServer-Client",
+    "lang": "C#",
+    "stars": 0,
+    "desc": "A basic client and server example",
+    "fork": false
+  },
+  {
+    "name": "Northwind-Backend",
+    "lang": "C#",
+    "stars": 0,
+    "desc": "Engin Demiroğ proje kampı",
+    "fork": false
+  },
+  {
+    "name": "Northwind-Angular",
+    "lang": "TypeScript",
+    "stars": 0,
+    "desc": "Frontend of Northwind-Backend project",
+    "fork": false
+  },
+  {
+    "name": "BlogProject",
+    "lang": "HTML",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "ReCap-Angular",
+    "lang": "CSS",
+    "stars": 1,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "Recipe",
+    "lang": "TypeScript",
+    "stars": 0,
+    "desc": "Demo Recipe application",
+    "fork": false
+  },
+  {
+    "name": "hrms",
+    "lang": "Java",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "PharmacyManagment",
+    "lang": "CSS",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "BlindHelper",
+    "lang": "Python",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  },
+  {
+    "name": "LICA-Note",
+    "lang": "Python",
+    "stars": 0,
+    "desc": "",
+    "fork": false
+  }
+]

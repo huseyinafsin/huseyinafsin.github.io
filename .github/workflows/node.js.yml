@@ -1,8 +1,8 @@
-name: Build and deploy blog
+name: Build and deploy site
 
 on:
   push:
-    branches: ["blog"]
+    branches: ["sahne"]
   workflow_dispatch:
 
 permissions:

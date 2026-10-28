@@ -1,36 +1,8 @@
-import React, { useMemo } from "react";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { Navigate, Route, Routes } from "react-router-dom";
-
-import BlogLayout from "./layouts/BlogLayout";
-import PostList from "./pages/PostList";
-import Post from "./pages/Post";
-import About from "./pages/About";
-import Studio from "./pages/Studio";
-import NotFound from "./pages/NotFound";
-import { ColorModeContext } from "./contexts/ColorModeContext";
-import { getDesignTokens } from "./theme";
+import React from "react";
+import Arena from "./arena/Arena";
 
 function App() {
-  const { mode } = React.useContext(ColorModeContext);
-  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes>
-        <Route element={<BlogLayout />}>
-          <Route path="/" element={<PostList />} />
-          <Route path="/hakkinda" element={<About />} />
-          <Route path="/panel" element={<Studio />} />
-          <Route path="/writings" element={<Navigate to="/" replace />} />
-          <Route path="/writings/:slug" element={<Post />} />
-          <Route path="/:slug" element={<Post />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </ThemeProvider>
-  );
+  return <Arena />;
 }
 
 export default App;

@@ -1,23 +1,31 @@
-# Hüseyin Afşin · Yazılım Notları
+# Model Atölyesi
 
-Markdown dosyalarıyla yazı yayınlanan, React ile yazılmış statik kişisel blog.
-Sunucu, veritabanı ve yönetim paneli yok.
+Dört yapay zekâ maskotunun rastgele bir sahnede dolaşıp bir yazılımcının
+repolarını çekiştirdiği, mizahi bir eleştiri sahnesi.
 
-**Site:** https://huseyinafsin.github.io/
+**Canlı:** https://huseyinafsin.github.io/
 
-## Özellikler
+## Fikir
 
-- Markdown tabanlı yazılar (front matter desteği)
-- **Yazı stüdyosu (`/panel`)**: görsel, video ve kod ekleme, canlı önizleme, otomatik taslak
-- **Paylaşım görseli üreteci**: Instagram kare/hikâye ve WhatsApp kartı için PNG
-- Video gömme (YouTube, Vimeo, mp4) ve tablo desteği
-- Kopyalanabilir kod blokları
-- Etiket filtreleme ve yazılarda arama
-- Açık/koyu tema (sistem tercihi + `localStorage`)
-- Okuma ilerleme çubuğu, içindekiler, okuma süresi, önceki/sonraki yazı
-- Otomatik `sitemap.xml` ve RSS (`feed.xml`) üretimi
-- GitHub Pages için derin bağlantı desteği (`404.html` yönlendirmesi)
-- Vercel / Netlify yapılandırmaları hazır
+2026'da dört büyük model şirketi aynı şeyi söylüyor: güvenlik, şeffaflık,
+açık kaynak, özgürlük. Sahnedeki maskotlar bunları temsil ediyor ama
+hiçbiri kendi şirketini eleştirmiyor. Repolar gerçek, eleştiriler kurgu,
+kurgunun kendisi eleştirinin konusu.
+
+Detaylar sağ üstteki **Manifesto**'da.
+
+## Ne var?
+
+- **Rastgele dolaşan maskotlar** — her biri farklı hızda, farklı yönde,
+  birbirine çarpmadan
+- **Üç konuşma türü**: repo eleştirisi, şirket eleştirisi, maskotların
+  birbirine laf sokması
+- **41 gerçek repo** alt şeritte hedef olarak seçilebilir
+- **Kaos** modu: maskotlar panikler
+- **Duraklat** (veya boşluk tuşu)
+- **Tutanak**: sahnede söylenen her şeyin kaydı
+- **Manifesto**: eserin ne yaptığı ve neden yaptığı
+- Mobil uyumlu, `prefers-reduced-motion` desteği
 
 ## Kurulum
 
@@ -26,59 +34,56 @@ npm install
 npm start
 ```
 
-`http://localhost:3000` adresinde açılır.
-
-## Yazı ekleme
-
-İki yol var:
-
-**1. Stüdyo (önerilen):** `/panel` adresini açın, yazıyı yazın, görsel/video/kod
-ekleyin, paylaşım görselini hazırlayın ve `.md` olarak indirin.
-
-**2. Elle:** `src/content/writings/` içine `YYYY-AA-GG-baslik.md` adında dosya
-oluşturun ve başına front matter ekleyin:
-
-```yaml
----
-title: "Yazı başlığı"
-date: "2026-11-02"
-summary: "Listede görünecek kısa özet"
-tags: ["C#", "Performans"]
-cover: ""
-draft: false
----
-```
-
-Ardından yazıyı markdown ile yazın. Ayrıntılı kılavuz: [`src/content/writings/_KULLANIM.md`](src/content/writings/_KULLANIM.md)
-Şablon: [`src/content/writings/_sablon.md`](src/content/writings/_sablon.md)
-
-## Komutlar
-
-| Komut | Açıklama |
-| --- | --- |
-| `npm start` | Geliştirme sunucusu |
-| `npm run build` | Üretim derlemesi (`build/`) |
-| `npm run writings` | Markdown listesini, sitemap ve RSS'i yeniler |
-| `npm run deploy` | `build/` çıktısını `gh-pages` dalına yayınlar |
-| `npm test` | Testler |
+`http://localhost:3000` — giriş perdesi açılır, **Perdeyi aç** ile sahneye
+geçilir. Doğrudan sahne için `/?sahne=1`.
 
 ## Yapı
 
 ```text
-public/                     statik dosyalar, 404 yönlendirmesi, favicon
-scripts/build-writings.js   markdown -> JSON + sitemap + RSS
-src/components/             markdown, kapak, paylaşım, içindekiler
-src/content/writings/       yazılar (.md)
-src/layouts/BlogLayout.jsx  üst menü ve alt bilgi
-src/pages/                  yazı listesi, yazı detayı, hakkında, stüdyo, 404
-src/theme.js                MUI tema (açık/koyu)
-src/utils/                  yazı, metin, görsel ve paylaşım yardımcıları
+src/arena/
+  Arena.jsx       sahne, gezinme döngüsü, balonlar, pencereler
+  Mascot.jsx      dört maskotun SVG çizimi
+  lines.js        bütün konuşma havuzları (repo / şirket / atışma)
+  mascots.js      maskot tanımları ve açılış replikleri
+  RoastEngine.js  havuzları karıştırıp tekrarı engelleyen seçici
+  repos.json      GitHub'dan çekilmiş repo listesi
+  arena.css       sahne, balon, şerit ve pencere stilleri
 ```
+
+Konuşmalar `src/arena/lines.js` içinde düz metin olarak durur. Yeni bir cümle
+eklemek için ilgili maskotun dizisine bir satır yazmak yeterli:
+
+```js
+// {{repo}}, {{lang}}, {{stars}}, {{desc}} otomatik doldurulur
+"{{repo}} reposunu inceledim. Güçlü yönleri: var olması.",
+```
+
+`{{desc}}` içeren satırlar, açıklaması olmayan repolarda atlanır.
 
 ## Yayınlama
 
-`.github/workflows/node.js.yml` `blog` dalına yapılan push'larda siteyi derleyip
-`gh-pages` dalına gönderir. GitHub Pages kaynağı: `gh-pages` / root.
+```bash
+npm run deploy
+```
 
-Alternatif olarak Vercel veya Netlify üzerinden de yayınlanabilir; gerekli
-yapılandırma dosyaları (`vercel.json`, `netlify.toml`) depoda mevcut.
+`build/` çıktısını `gh-pages` dalına gönderir. GitHub Pages kaynağı:
+`gh-pages` / root. Vercel ve Netlify yapılandırmaları (`vercel.json`,
+`netlify.toml`) hazır.
+
+## Not
+
+Bu proje hiçbir modeli çalıştırmaz. Cümleler önceden yazılmıştır, rastgele
+seçilir. Marka logoları kullanılmaz; maskotlar yalnızca siluet, renk ve bakış
+olarak gönderme yapar.
+
+`mascots/` klasörü çizimler için kullandığım yerel referans fotoğraflarını
+tutar ve telif nedeniyle depoya dahil edilmez.
+
+## Blog sürümü
+
+Bu depo bir zamanlar markdown tabanlı bir blogdu. O sürüm `blog` dalında ve
+`blog-v1` etiketinde duruyor:
+
+```bash
+git checkout blog
+```
