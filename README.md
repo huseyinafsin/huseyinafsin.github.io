@@ -8,9 +8,13 @@ Sunucu, veritabanı ve yönetim paneli yok.
 ## Özellikler
 
 - Markdown tabanlı yazılar (front matter desteği)
+- **Yazı stüdyosu (`/panel`)**: görsel, video ve kod ekleme, canlı önizleme, otomatik taslak
+- **Paylaşım görseli üreteci**: Instagram kare/hikâye ve WhatsApp kartı için PNG
+- Video gömme (YouTube, Vimeo, mp4) ve tablo desteği
+- Kopyalanabilir kod blokları
 - Etiket filtreleme ve yazılarda arama
 - Açık/koyu tema (sistem tercihi + `localStorage`)
-- Yazı detay sayfası, okuma süresi, önceki/sonraki yazı
+- Okuma ilerleme çubuğu, içindekiler, okuma süresi, önceki/sonraki yazı
 - Otomatik `sitemap.xml` ve RSS (`feed.xml`) üretimi
 - GitHub Pages için derin bağlantı desteği (`404.html` yönlendirmesi)
 - Vercel / Netlify yapılandırmaları hazır
@@ -26,8 +30,13 @@ npm start
 
 ## Yazı ekleme
 
-1. `src/content/writings/` içine `YYYY-AA-GG-baslik.md` adında dosya oluşturun.
-2. Başına front matter ekleyin:
+İki yol var:
+
+**1. Stüdyo (önerilen):** `/panel` adresini açın, yazıyı yazın, görsel/video/kod
+ekleyin, paylaşım görselini hazırlayın ve `.md` olarak indirin.
+
+**2. Elle:** `src/content/writings/` içine `YYYY-AA-GG-baslik.md` adında dosya
+oluşturun ve başına front matter ekleyin:
 
 ```yaml
 ---
@@ -40,9 +49,7 @@ draft: false
 ---
 ```
 
-3. Yazıyı markdown ile yazın.
-
-Ayrıntılı kılavuz: [`src/content/writings/_KULLANIM.md`](src/content/writings/_KULLANIM.md)
+Ardından yazıyı markdown ile yazın. Ayrıntılı kılavuz: [`src/content/writings/_KULLANIM.md`](src/content/writings/_KULLANIM.md)
 Şablon: [`src/content/writings/_sablon.md`](src/content/writings/_sablon.md)
 
 ## Komutlar
@@ -60,12 +67,12 @@ Ayrıntılı kılavuz: [`src/content/writings/_KULLANIM.md`](src/content/writing
 ```text
 public/                     statik dosyalar, 404 yönlendirmesi, favicon
 scripts/build-writings.js   markdown -> JSON + sitemap + RSS
-src/components/Markdown.jsx bağımlılıksız markdown görüntüleyici
+src/components/             markdown, kapak, paylaşım, içindekiler
 src/content/writings/       yazılar (.md)
 src/layouts/BlogLayout.jsx  üst menü ve alt bilgi
-src/pages/                  yazı listesi, yazı detayı, 404
+src/pages/                  yazı listesi, yazı detayı, hakkında, stüdyo, 404
 src/theme.js                MUI tema (açık/koyu)
-src/utils/writings.js       yazı yardımcıları
+src/utils/                  yazı, metin, görsel ve paylaşım yardımcıları
 ```
 
 ## Yayınlama

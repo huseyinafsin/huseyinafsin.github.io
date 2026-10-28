@@ -1,11 +1,15 @@
 import writings from "../content/writings.generated.json";
+import { formatDate, readingTimeOf } from "./text";
 
 /**
  * Yazılar `src/content/writings/` klasöründeki markdown dosyalarından
  * `scripts/build-writings.js` ile üretilir. Burada sadece okuma yapılır.
  */
 
-const allWritings = Array.isArray(writings) ? writings : [];
+const allWritings = (Array.isArray(writings) ? writings : []).map((post) => ({
+  ...post,
+  readingTime: post.readingTime || readingTimeOf(post.content),
+}));
 
 export function getAllWritings() {
   return allWritings;
@@ -36,12 +40,8 @@ export function getAllTags() {
     .map(([name, count]) => ({ name, count }));
 }
 
-export function formatDate(value) {
-  const date = new Date(`${value}T00:00:00`);
-  if (Number.isNaN(date.getTime())) return value;
-  return date.toLocaleDateString("tr-TR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+export function postUrl(post) {
+  return `https://huseyinafsin.github.io/writings/${post.slug}`;
 }
+
+export { formatDate };

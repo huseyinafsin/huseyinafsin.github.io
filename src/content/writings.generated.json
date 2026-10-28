@@ -1,5 +1,19 @@
 [
   {
+    "slug": "medya-ve-kod",
+    "title": "Markdown blog'a video, görsel ve kod eklemek",
+    "date": "2026-10-27",
+    "summary": "Yazılarıma artık video gömebiliyorum, kod bloklarını kopyalanabilir hale getirdim ve her yazı için Instagram/WhatsApp paylaşım görseli üretiyorum. Kısa bir tur.",
+    "tags": [
+      "Markdown",
+      "Video",
+      "Tasarım"
+    ],
+    "cover": "",
+    "readingTime": 1,
+    "content": "Bu yazı, yeni stüdyoda neleri denediğimi göstermek için bir deneme alanı.\nAşağıdaki örnekler gerçekten çalışıyor, sayfayı kaydırıp bakabilirsiniz.\n\n## Video gömme\n\nTek satırla YouTube videosu eklenebiliyor. Altyazı da ekleyebilirsiniz.\n\n!video[Kanaldan kısa bir video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\nVimeo ve doğrudan `.mp4` bağlantıları da destekleniyor.\n\n## Görsel ve altyazı\n\n![Kod yazarken çekilmiş bir kare](https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=1200&q=70)\n\n## Kopyalanabilir kod\n\n```csharp\npublic sealed class Yazı\n{\n    public string Başlık { get; init; } = string.Empty;\n    public DateOnly Tarih { get; init; }\n    public IReadOnlyList<string> Etiketler { get; init; } = [];\n}\n```\n\n```typescript\nconst slugify = (text: string) =>\n  text\n    .toLowerCase()\n    .replace(/[çğıöşü]/g, (c) => ({ ç: \"c\", ğ: \"g\", ı: \"i\", ö: \"o\", ş: \"s\", ü: \"u\" })[c] ?? c)\n    .replace(/[^a-z0-9]+/g, \"-\");\n```\n\n## Tablo\n\n| Öğe | Durum |\n| --- | --- |\n| Video | Çalışıyor |\n| Görsel | Çalışıyor |\n| Kod | Çalışıyor |\n| Paylaşım görseli | Çalışıyor |\n\n> Her yazının altında paylaşım çubuğu var; oradan tek tıkla görsel üretebilirsiniz."
+  },
+  {
     "slug": "ilk-yazi",
     "title": "Merhaba: Bu blogda ne yazacağım",
     "date": "2026-10-26",

@@ -1,20 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Link as MuiLink, useTheme } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import { slugifyHeading } from "../utils/text";
 
 /**
- * Bağımlılık gerektirmeyen küçük markdown görüntüleyici.
- * Başlık, paragraf, liste, alıntı, kod bloğu, görsel, bağlantı, tablo ve
- * temel satır içi biçimlendirmeyi destekler.
+ * Bağımlılık gerektirmeyen markdown görüntüleyici.
+ * Başlık, paragraf, liste, alıntı, tablo, görsel, video (YouTube/Vimeo/mp4),
+ * kod bloğu ve temel satır içi biçimlendirmeyi destekler.
  */
 
 const INLINE_PATTERN =
   /(!\[[^\]]*\]\([^)]*\)|\[[^\]]+\]\([^)]*\)|\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|`[^`]+`|\*[^*\n]+\*)/g;
 
-const isInternal = (href) => href.startsWith("/") || href.startsWith("#");
-
 const CODE_FONT =
   'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace';
+
+const isInternal = (href) => href.startsWith("/") || href.startsWith("#");
+
+export function videoSource(url) {
+  const value = String(url || "").trim();
+  const youtube = value.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{6,})/i
+  );
+  if (youtube) {
+    return {
+      type: "youtube",
+      id: youtube[1],
+      src: `https://www.youtube-nocookie.com/embed/${youtube[1]}`,
+      original: value,
+    };
+  }
+  const vimeo = value.match(/vimeo\.com\/(\d+)/i);
+  if (vimeo) {
+    return {
+      type: "vimeo",
+      id: vimeo[1],
+      src: `https://player.vimeo.com/video/${vimeo[1]}`,
+      original: value,
+    };
+  }
+  if (/\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(value)) {
+    return { type: "file", src: value, original: value };
+  }
+  return null;
+}
 
 function renderInline(text, keyPrefix = "inline") {
   if (!text) return null;
@@ -33,6 +64,7 @@ function renderInline(text, keyPrefix = "inline") {
             component="img"
             src={image[2].trim()}
             alt={image[1]}
+            loading="lazy"
             sx={{
               display: "block",
               width: "100%",
@@ -131,7 +163,10 @@ function isBlockStart(line) {
     /^\s*[-*+]\s+/.test(line) ||
     /^\s*\d+[.)]\s+/.test(line) ||
     /^\s*!\[[^\]]*\]\([^)]*\)\s*$/.test(line) ||
-    /^\s*\|.*\|\s*$/.test(line)
+    /^!video\[/.test(line.trim()) ||
+    /^https?:\/\//.test(line.trim()) ||
+    /^\s*\|.*\|\s*$/.test(line) ||
+    /^---\s*$/.test(line)
   );
 }
 
@@ -159,7 +194,7 @@ function parseBlocks(content) {
       continue;
     }
 
-    const fence = line.match(/^```(\S*)\s*$/);
+    const fence = line.match(/^```([\w-]*)\s*$/);
     if (fence) {
       const code = [];
       index += 1;
@@ -177,7 +212,7 @@ function parseBlocks(content) {
       blocks.push({
         type: "heading",
         level: heading[1].length,
-        text: heading[2],
+        text: heading[2].replace(/\s*#+\s*$/, ""),
       });
       index += 1;
       continue;
@@ -189,7 +224,10 @@ function parseBlocks(content) {
       continue;
     }
 
-    if (/^\s*\|.*\|\s*$/.test(line) && /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[index + 1] || "")) {
+    if (
+      /^\s*\|.*\|\s*$/.test(line) &&
+      /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[index + 1] || "")
+    ) {
       const header = splitTableRow(line);
       index += 2;
       const rows = [];
@@ -231,6 +269,26 @@ function parseBlocks(content) {
       continue;
     }
 
+    const videoDirective = line
+      .trim()
+      .match(/^!video\[([^\]]*)\]\(([^)]+)\)$/);
+    if (videoDirective) {
+      blocks.push({
+        type: "video",
+        caption: videoDirective[1],
+        url: videoDirective[2].trim(),
+      });
+      index += 1;
+      continue;
+    }
+
+    const bareVideo = videoSource(line.trim());
+    if (bareVideo && /^https?:\/\//.test(line.trim())) {
+      blocks.push({ type: "video", caption: "", url: line.trim() });
+      index += 1;
+      continue;
+    }
+
     const image = line.trim().match(/^!\[([^\]]*)\]\(([^)]*)\)$/);
     if (image) {
       blocks.push({ type: "image", alt: image[1], src: image[2].trim() });
@@ -255,27 +313,181 @@ function parseBlocks(content) {
 }
 
 const HEADING_STYLES = {
-  1: { fontSize: "1.9rem", mt: 0, mb: 2 },
-  2: { fontSize: "1.5rem", mt: 5, mb: 1.5 },
-  3: { fontSize: "1.2rem", mt: 4, mb: 1.25 },
+  1: { fontSize: "1.85rem", mt: 0, mb: 2 },
+  2: { fontSize: "1.45rem", mt: 5, mb: 1.5 },
+  3: { fontSize: "1.18rem", mt: 4, mb: 1.25 },
   4: { fontSize: "1.05rem", mt: 3, mb: 1 },
   5: { fontSize: "1rem", mt: 3, mb: 1 },
   6: { fontSize: "0.95rem", mt: 3, mb: 1 },
 };
 
-function headingId(text) {
-  return String(text)
-    .toLowerCase()
-    .replace(/[çğıöşü]/g, (char) => {
-      const map = { ç: "c", ğ: "g", ı: "i", ö: "o", ş: "s", ü: "u" };
-      return map[char];
-    })
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+function CodeBlock({ block }) {
+  const theme = useTheme();
+  const [copied, setCopied] = useState(false);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(block.text);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch (error) {
+      // Pano erişimi yoksa yoksay.
+    }
+  };
+
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        my: 3.5,
+        borderRadius: 2,
+        border: "1px solid",
+        borderColor: "divider",
+        backgroundColor: theme.palette.mode === "dark" ? "#0e0e10" : "#f7f7f5",
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 2,
+          px: 2,
+          py: 0.9,
+          borderBottom: "1px solid",
+          borderColor: "divider",
+          backgroundColor: theme.palette.mode === "dark"
+            ? "rgba(255,255,255,0.03)"
+            : "rgba(0,0,0,0.02)",
+        }}
+      >
+        <Box
+          component="span"
+          sx={{
+            fontFamily: CODE_FONT,
+            fontSize: 11.5,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            color: "text.secondary",
+          }}
+        >
+          {block.lang || "kod"}
+        </Box>
+        <Box
+          component="button"
+          onClick={copy}
+          type="button"
+          aria-label="Kodu kopyala"
+          sx={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 0.5,
+            border: 0,
+            background: "none",
+            cursor: "pointer",
+            color: "text.secondary",
+            fontSize: 12,
+            fontFamily: "inherit",
+            p: 0,
+            "&:hover": { color: "text.primary" },
+          }}
+        >
+          {copied ? (
+            <>
+              <CheckRoundedIcon sx={{ fontSize: 14 }} /> kopyalandı
+            </>
+          ) : (
+            <>
+              <ContentCopyRoundedIcon sx={{ fontSize: 14 }} /> kopyala
+            </>
+          )}
+        </Box>
+      </Box>
+      <Box
+        component="pre"
+        sx={{
+          m: 0,
+          p: { xs: 2, sm: 2.5 },
+          overflowX: "auto",
+          fontSize: 13.5,
+          lineHeight: 1.7,
+        }}
+      >
+        <Box component="code" sx={{ fontFamily: CODE_FONT }}>
+          {block.text}
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+function VideoBlock({ block }) {
+  const source = videoSource(block.url);
+
+  if (!source) {
+    return (
+      <Box sx={{ my: 3 }}>
+        <MuiLink href={block.url} target="_blank" rel="noopener noreferrer">
+          {block.url}
+        </MuiLink>
+      </Box>
+    );
+  }
+
+  return (
+    <Box component="figure" sx={{ my: 4, mx: 0 }}>
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          aspectRatio: "16 / 9",
+          borderRadius: 2,
+          overflow: "hidden",
+          border: "1px solid",
+          borderColor: "divider",
+          backgroundColor: "#000",
+        }}
+      >
+        {source.type === "file" ? (
+          <Box
+            component="video"
+            src={source.src}
+            controls
+            playsInline
+            preload="metadata"
+            sx={{ width: "100%", height: "100%", display: "block" }}
+          />
+        ) : (
+          <Box
+            component="iframe"
+            src={source.src}
+            title={block.caption || "Video"}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+            sx={{ width: "100%", height: "100%", border: 0, display: "block" }}
+          />
+        )}
+      </Box>
+      {block.caption && (
+        <Box
+          component="figcaption"
+          sx={{
+            mt: 1,
+            fontSize: 13,
+            color: "text.secondary",
+            textAlign: "center",
+          }}
+        >
+          {block.caption}
+        </Box>
+      )}
+    </Box>
+  );
 }
 
 function Markdown({ content }) {
-  const theme = useTheme();
   const blocks = parseBlocks(content);
 
   return (
@@ -303,7 +515,7 @@ function Markdown({ content }) {
               <Box
                 key={key}
                 component={`h${block.level}`}
-                id={headingId(block.text)}
+                id={slugifyHeading(block.text)}
                 sx={{
                   fontFamily: '"Inter", sans-serif',
                   fontWeight: 600,
@@ -318,54 +530,7 @@ function Markdown({ content }) {
             );
           }
           case "code":
-            return (
-              <Box
-                key={key}
-                sx={{
-                  position: "relative",
-                  my: 3.5,
-                  borderRadius: 2,
-                  border: "1px solid",
-                  borderColor: "divider",
-                  backgroundColor:
-                    theme.palette.mode === "dark" ? "#0f0f11" : "#f6f6f5",
-                  overflow: "hidden",
-                }}
-              >
-                {block.lang && (
-                  <Box
-                    component="span"
-                    sx={{
-                      position: "absolute",
-                      top: 8,
-                      right: 12,
-                      fontSize: 11,
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      color: "text.secondary",
-                      fontFamily: CODE_FONT,
-                    }}
-                  >
-                    {block.lang}
-                  </Box>
-                )}
-                <Box
-                  component="pre"
-                  sx={{
-                    m: 0,
-                    p: { xs: 2, sm: 2.5 },
-                    pt: block.lang ? 3.5 : 2.5,
-                    overflowX: "auto",
-                    fontSize: 13.5,
-                    lineHeight: 1.7,
-                  }}
-                >
-                  <Box component="code" sx={{ fontFamily: CODE_FONT }}>
-                    {block.text}
-                  </Box>
-                </Box>
-              </Box>
-            );
+            return <CodeBlock key={key} block={block} />;
           case "quote":
             return (
               <Box
@@ -447,26 +612,42 @@ function Markdown({ content }) {
                 </Box>
               </Box>
             );
+          case "video":
+            return <VideoBlock key={key} block={block} />;
           case "hr":
             return (
               <Box key={key} component="hr" sx={{ my: 5, borderColor: "divider" }} />
             );
           case "image":
             return (
-              <Box
-                key={key}
-                component="img"
-                src={block.src}
-                alt={block.alt}
-                sx={{
-                  display: "block",
-                  width: "100%",
-                  borderRadius: 2,
-                  my: 4,
-                  border: "1px solid",
-                  borderColor: "divider",
-                }}
-              />
+              <Box component="figure" key={key} sx={{ my: 4, mx: 0 }}>
+                <Box
+                  component="img"
+                  src={block.src}
+                  alt={block.alt}
+                  loading="lazy"
+                  sx={{
+                    display: "block",
+                    width: "100%",
+                    borderRadius: 2,
+                    border: "1px solid",
+                    borderColor: "divider",
+                  }}
+                />
+                {block.alt && (
+                  <Box
+                    component="figcaption"
+                    sx={{
+                      mt: 1,
+                      fontSize: 13,
+                      color: "text.secondary",
+                      textAlign: "center",
+                    }}
+                  >
+                    {block.alt}
+                  </Box>
+                )}
+              </Box>
             );
           default:
             return (
