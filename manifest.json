@@ -1,7 +1,7 @@
 {
-  "short_name": "Dağıtım Ekibi",
-  "name": "Dağıtım Ekibi — bir repo sahnesi",
-  "description": "Sekiz model ve CEO maskotu, 41 herkese açık GitHub reposunun arasında dolaşıyor.",
+  "short_name": "Kodun Bedeli",
+  "name": "Kodun Bedeli — açık kaynak sahnesi",
+  "description": "Açık kodla büyüyen yapay zekâ, geliştiricilerin işini tehdit ediyor. Sekiz maskot ve 41 repo.",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0a0908",
