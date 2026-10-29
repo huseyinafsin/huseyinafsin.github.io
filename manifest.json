@@ -1,7 +1,7 @@
 {
-  "short_name": "Model Atölyesi",
-  "name": "Model Atölyesi — bir eleştiri sahnesi",
-  "description": "Dört yapay zekâ maskotu, kırk bir repo ve mizahi bir eleştiri.",
+  "short_name": "Dağıtım Ekibi",
+  "name": "Dağıtım Ekibi — bir repo sahnesi",
+  "description": "Sekiz model ve CEO maskotu, 41 herkese açık GitHub reposunun arasında dolaşıyor.",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0a0908",
